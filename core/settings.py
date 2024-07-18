@@ -153,13 +153,19 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 #CDP
 
-CDP_API_USERNAME = 'AE+WNj6Fu6YE'
-CDP_API_PASSWORD = '77iAGD7vXyEMPIi9HB0sR1GNGKOcHZbh'
-CDP_API_BASEURL = 'https://cdp.EU5-prod.gigya.com'
-CDP_BUSINESSUNIT = "4_p4oH0IcAbAPkEilVFaaiWQ"
-CDP_EVENT_LIST = {"change_profile":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HEHA7LsdP2Owa5whR2rjaw"},
-                  "new_contact":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HNAC7ti_Z4d6H6dwgz1z4A"},} #List of different applications/events of cdp
+# CDP_API_USERNAME = 'AE+WNj6Fu6YE'
+# CDP_API_PASSWORD = '77iAGD7vXyEMPIi9HB0sR1GNGKOcHZbh'
+# CDP_API_BASEURL = 'https://cdp.EU5-prod.gigya.com'
+# CDP_BUSINESSUNIT = "4_p4oH0IcAbAPkEilVFaaiWQ"
+# CDP_EVENT_LIST = {"change_profile":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HEHA7LsdP2Owa5whR2rjaw"},
+#                   "new_contact":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HNAC7ti_Z4d6H6dwgz1z4A"},} #List of different applications/events of cdp
 
+
+CDP_API_USERNAME = config('CDP_API_USERNAME', None)
+CDP_API_PASSWORD = config('CDP_API_PASSWORD', None)
+CDP_API_BASEURL = config('CDP_API_BASEURL', None)
+CDP_BUSINESSUNIT = config('CDP_BUSINESSUNIT', None)
+CDP_EVENT_LIST = config('CDP_EVENT_LIST', None)
 
 LANGUAGE_CODE = 'de-de'
 USE_I18N = True
