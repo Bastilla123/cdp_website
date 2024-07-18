@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.middleware.middleware'
             ],
         },
     },
@@ -166,6 +167,8 @@ CDP_API_PASSWORD = config('CDP_API_PASSWORD', None)
 CDP_API_BASEURL = config('CDP_API_BASEURL', None)
 CDP_BUSINESSUNIT = config('CDP_BUSINESSUNIT', None)
 CDP_EVENT_LIST = config('CDP_EVENT_LIST', None)
+
+APP_TITLE = config('APP_TITLE', None)
 
 LANGUAGE_CODE = 'de-de'
 USE_I18N = True
