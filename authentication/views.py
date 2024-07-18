@@ -86,19 +86,27 @@ def login_view(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
+            print("Auth")
             if user is not None:
                 login(request, user)
+                print("Login")
                 if hasattr(request.user,'profile'):
+                    print("Profile")
                     if request.user.profile.address is None:
+                        print("Drin 1")
                         messages.error(request, _("Please enter complete profile data!"))
                         return redirect("/customers/profile/")
                     else:
+                        print("Drin 2")
                         return redirect("/home")
                         messages.error(request, _("Please enter complete profile data!"))
                         return redirect("/customers/profile/")
                 else:
+                    print("Else")
                     from customers.models import Profile
                     Profile(user=request.user).save()
+                    messages.error(request, _("Please enter complete profile data!"))
+                    return redirect("/customers/profile/")
 
             else:
                 msg = 'Invalid credentials'
@@ -108,7 +116,7 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg, "contactform": contactform})
 
-
+from django.contrib.auth.models import User
 def register_user(request):
     msg = None
     success = False
@@ -118,11 +126,11 @@ def register_user(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
 
-            form.save()
+            user = form.save()
 
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
+
 
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
