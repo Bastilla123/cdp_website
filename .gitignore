@@ -101,3 +101,5 @@ ENV/
 # database & logs
 *.db
 *.sqlite3
+
+settings.ini

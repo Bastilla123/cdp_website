@@ -1,12 +1,11 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
+
 
 import os, random, string
 from dotenv import load_dotenv
 from unipath import Path
 import dj_database_url
+from django.utils.translation import gettext_lazy as _
+from decouple import config
 
 load_dotenv()
 
@@ -19,13 +18,22 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 if not SECRET_KEY:
     SECRET_KEY = ''.join(random.choice( string.ascii_lowercase  ) for i in range( 32 ))
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG   = os.getenv('DEBUG', False)
+DEBUG   = os.getenv('DEBUG', True)
 DEVEL   = os.getenv('DEVEL', False)
 SERVER  = os.getenv('DEVEL', '127.0.0.1')
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', SERVER]
+ALLOWED_HOSTS = ['*']
+
+APPEND_SLASH=False
 
 # Application definition
 
@@ -37,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',  # Enable the inner app
-    'customers'
+    'customers',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -72,20 +82,27 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_URL = '/login/'
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_NAME = 'database_sa'
+SESSION_COOKIE_DOMAIN = '127.0.0.1'
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME'  : 'db.sqlite3',
-    }
+        'default': {
+            'ENGINE': config('DATABASE_ENGINE', 'django.db.backends.sqlite3'),
+            'NAME': config('DATABASE_NAME', None),
+            'USER': config('DATABASE_USER', None),
+            'PASSWORD': config('DATABASE_PASSWORD', None),
+            'HOST': config('DATABASE_HOST', None),
+            'PORT': config('DATABASE_PORT', None),
+            'ATOMIC_REQUESTS': True
+        }
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -130,5 +147,34 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'core/static'),
 )
+
+SESSION_COOKIE_AGE = 1209600
+SESSION_SAVE_EVERY_REQUEST = False
+
+#CDP
+
+CDP_API_USERNAME = 'AE+WNj6Fu6YE'
+CDP_API_PASSWORD = '77iAGD7vXyEMPIi9HB0sR1GNGKOcHZbh'
+CDP_API_BASEURL = 'https://cdp.EU5-prod.gigya.com'
+CDP_BUSINESSUNIT = "4_p4oH0IcAbAPkEilVFaaiWQ"
+CDP_EVENT_LIST = {"change_profile":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HEHA7LsdP2Owa5whR2rjaw"},
+                  "new_contact":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HNAC7ti_Z4d6H6dwgz1z4A"},} #List of different applications/events of cdp
+
+
+LANGUAGE_CODE = 'de-de'
+USE_I18N = True
+USE_L10N = False
+DATE_INPUT_FORMATS = ('%m/%d/%Y','%d-%m-%Y','%Y-%m-%d')
+
+
+LANGUAGES = [
+('de', _('German')),
+('en', _('English')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(CORE_DIR,  'locale/'),
+]
+
 #############################################################
 #############################################################

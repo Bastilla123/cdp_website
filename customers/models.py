@@ -1,9 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
-from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
+class Contact(models.Model):
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    zip = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    user_link = models.OneToOneField(User, related_name="user_link", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.email
 class Profile(models.Model):
     GENDER_MALE = 1
     GENDER_FEMALE = 2
@@ -13,14 +25,23 @@ class Profile(models.Model):
     ]
 
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="customers/profiles/avatars/", null=True, blank=True)
+    image = models.ImageField(upload_to="customers/profiles/avatars/", null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True, blank=True)
     phone = models.CharField(max_length=32, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=32, null=True, blank=True)
+    mobile_number = models.CharField(max_length=32, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     zip = models.CharField(max_length=30, null=True, blank=True)
+
+    skype = models.CharField(max_length=32, null=True, blank=True)
+    facebook = models.CharField(max_length=32, null=True, blank=True)
+    twitter = models.CharField(max_length=32, null=True, blank=True)
+    linkedin = models.CharField(max_length=32, null=True, blank=True)
+    instagram = models.CharField(max_length=32, null=True, blank=True)
+    dribble = models.CharField(max_length=32, null=True, blank=True)
+    pinterest = models.CharField(max_length=32, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -31,4 +52,4 @@ class Profile(models.Model):
 
     @property
     def get_avatar(self):
-        return self.avatar.url if self.avatar else static('assets/img/team/default-profile-picture.png')
+        return self.avatar.url if self.avatar else 'assets/img/team/default-profile-picture.png'

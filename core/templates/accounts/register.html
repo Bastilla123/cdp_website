@@ -1,5 +1,5 @@
 {% extends "layouts/base-fullscreen.html" %}
-
+{% load i18n %}
 {% block title %} Register {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
@@ -19,22 +19,19 @@
                         <div class="signin-inner my-3 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
 
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">
-                                    Django Volt - Sign UP
-                                </h1>
-                                <br />
+
                                 <p>
                                     {% if msg %}
                                         {{ msg | safe }}
                                     {% else %}
-                                        Add your credentials
+                                        {% trans 'Add your credentials' %}
                                     {% endif %}                                     
                                 </p>    
                             </div>
                             
                             {% if success %}
 
-                                <a href="{% url 'login' %}" class="btn btn-block btn-primary">Sign IN</a>
+                                <a href="{% url 'login' %}" class="btn btn-block btn-primary">{% trans 'Sign IN' %}</a>
 
                             {% else %}
 
@@ -44,7 +41,7 @@
 
                                     <!-- Form -->
                                     <div class="form-group mb-4">
-                                        <label for="email">Username</label>
+                                        <label for="email">{% trans 'Username' %}</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon3"><span class="fas fa-user-shield"></span></span>
                                             {{ form.username }}
@@ -55,7 +52,7 @@
 
                                     <!-- Form -->
                                     <div class="form-group mb-4">
-                                        <label for="email">Your Email</label>
+                                        <label for="email">{% trans 'Email' %}</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon3"><span class="fas fa-envelope"></span></span>
                                             {{ form.email }}
@@ -68,7 +65,7 @@
 
                                         <!-- Form -->
                                         <div class="form-group mb-4">
-                                            <label for="password">Password</label>
+                                            <label for="password">{% trans 'Password' %}</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
                                                 {{ form.password1 }}
@@ -79,7 +76,7 @@
 
                                         <!-- Form -->
                                         <div class="form-group mb-4">
-                                            <label for="password">Password Check</label>
+                                            <label for="password">{% trans 'Password Check' %}</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
                                                 {{ form.password2 }}
@@ -91,27 +88,22 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
                                                 <label class="form-check-label" for="defaultCheck5">
-                                                Agree terms
+                                                {% trans 'Agree terms' %}
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <a href="{% url 'login' %}" class="small text-right">Login</a>
+                                                <a href="{% url 'login' %}" class="small text-right">{% trans 'Login' %}</a>
                                             </div>
                                         </div>
                                         
                                     </div>
-                                    <button type="submit" name="register" class="btn btn-block btn-primary">Sign IN</button>
+                                    <button type="submit" name="register" class="btn btn-block btn-primary">{% trans 'Sign IN' %}</button>
                                 </form>
 
                             {% endif %}
 
 
-                            <div class="d-flex justify-content-center align-items-center mt-4">
-                                <span class="font-weight-normal">
-                                    &copy; <a  href="https://themesberg.com" target="_blank">Themesberg</a> 
-                                    - coded by <a target="_blank" href="https://appseed.us">AppSeed</a>
-                                </span>
-                            </div>
+
                         </div>
                     </div>
                 </div>
