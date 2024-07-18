@@ -93,7 +93,7 @@ class ProfileView(View):
                 messages.success(request, 'Password is successfully changed')
             cdp_event_list = settings.CDP_EVENT_LIST
             data = {
-                "id": profile.id,
+
                 "email": form.cleaned_data.get('email'),
 
                 "firstname": form.cleaned_data.get('first_name'),
