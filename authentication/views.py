@@ -1,9 +1,4 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
-# Create your views here.
+from customers.models import Profile
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -86,32 +81,35 @@ def login_view(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
-            print("Auth")
+            print("User "+str(user))
             if user is not None:
                 login(request, user)
-                print("Login")
+
                 if hasattr(request.user,'profile'):
-                    print("Profile")
+
                     if request.user.profile.address is None:
-                        print("Drin 1")
+
                         messages.error(request, _("Please enter complete profile data!"))
                         return redirect("/customers/profile/")
                     else:
-                        print("Drin 2")
+                        p
                         return redirect("/home")
                         messages.error(request, _("Please enter complete profile data!"))
                         return redirect("/customers/profile/")
                 else:
+
                     print("Else")
-                    from customers.models import Profile
                     Profile(user=request.user).save()
                     messages.error(request, _("Please enter complete profile data!"))
+                    print("Redirect")
                     return redirect("/customers/profile/")
 
             else:
+                print("Invalid")
                 msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
+            print("Error validating form")
     contactform = ContactForm()
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg, "contactform": contactform})
