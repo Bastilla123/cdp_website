@@ -84,10 +84,10 @@ TEMPLATES = [
 ]
 
 LOGIN_URL = '/login/'
-SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-SESSION_COOKIE_NAME = 'database_sa'
-SESSION_COOKIE_DOMAIN = '127.0.0.1'
-WSGI_APPLICATION = 'core.wsgi.application'
+#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+#SESSION_COOKIE_NAME = 'database_sa'
+#SESSION_COOKIE_DOMAIN = '127.0.0.1'
+#WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -149,8 +149,8 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'core/static'),
 )
 
-SESSION_COOKIE_AGE = 1209600
-SESSION_SAVE_EVERY_REQUEST = False
+#SESSION_COOKIE_AGE = 1209600
+#SESSION_SAVE_EVERY_REQUEST = False
 
 #CDP
 

@@ -85,24 +85,24 @@ def login_view(request):
             if user is not None:
                 login(request, user)
 
-                if hasattr(request.user,'profile'):
+#                if hasattr(request.user,'profile'):
 
-                    if request.user.profile.address is None:
+ #                   if request.user.profile.address is None:
 
-                        messages.error(request, _("Please enter complete profile data!"))
-                        return redirect("/customers/profile/")
-                    else:
-                        p
-                        return redirect("/home")
-                        messages.error(request, _("Please enter complete profile data!"))
-                        return redirect("/customers/profile/")
-                else:
+  #                      messages.error(request, _("Please enter complete profile data!"))
+   #                     return redirect("/customers/profile/")
+    #                else:
+     #                   p
+      #                  return redirect("/home")
+       #                 messages.error(request, _("Please enter complete profile data!"))
+        #                return redirect("/customers/profile/")
+         #       else:
 
-                    print("Else")
-                    Profile(user=request.user).save()
-                    messages.error(request, _("Please enter complete profile data!"))
-                    print("Redirect")
-                    return redirect("/customers/profile/")
+          #          print("Else")
+           #         Profile(user=request.user).save()
+            #        messages.error(request, _("Please enter complete profile data!"))
+             #       print("Redirect")
+                return redirect("/customers/profile/")
 
             else:
                 print("Invalid")
