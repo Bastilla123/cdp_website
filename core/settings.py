@@ -1,22 +1,20 @@
 import ast
-
-import os, random, string
+import os
 from dotenv import load_dotenv
 from unipath import Path
-import dj_database_url
 from django.utils.translation import gettext_lazy as _
 from decouple import config
 
 load_dotenv()
 
+location = lambda x: os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), x)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'eyJmb28iOiJiYXIifQ:1kx6Rf:LBB39RQmME-SRvilheUe5EmPYRbuDBgQp2tCAi7KGLk'
-#if not SECRET_KEY:
-#    SECRET_KEY = ''.join(random.choice( string.ascii_lowercase  ) for i in range( 32 ))
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -26,7 +24,7 @@ REST_FRAMEWORK = {
 }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG   = os.getenv('DEBUG', True)
+DEBUG   = True
 DEVEL   = os.getenv('DEVEL', False)
 SERVER  = os.getenv('DEVEL', '127.0.0.1')
 
@@ -84,13 +82,6 @@ TEMPLATES = [
 ]
 
 LOGIN_URL = '/login/'
-#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
-#SESSION_COOKIE_NAME = 'database_sa'
-#SESSION_COOKIE_DOMAIN = '127.0.0.1'
-#WSGI_APPLICATION = 'core.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
         'default': {
@@ -121,9 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -134,29 +122,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-#############################################################
-# SRC: https://devcenter.heroku.com/articles/django-assets
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
-STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'core/static'),
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+
 )
 
-#SESSION_COOKIE_AGE = 1209600
-#SESSION_SAVE_EVERY_REQUEST = False
-
-#CDP
-
-#CDP_API_USERNAME = 'AE+WNj6Fu6YE'
-#CDP_API_PASSWORD = '77iAGD7vXyEMPIi9HB0sR1GNGKOcHZbh'
-#CDP_API_BASEURL = 'https://cdp.EU5-prod.gigya.com'
 CDP_BUSINESSUNIT = "4_p4oH0IcAbAPkEilVFaaiWQ"
 CDP_EVENT_LIST = {"change_profile":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HEHA7LsdP2Owa5whR2rjaw"},
                    "new_contact":{"cdp_applicationid" :"HDJZr4y39x1wqgLMneGSIQ","cdp_eventid":"HNAC7ti_Z4d6H6dwgz1z4A"},} #List of different applications/events of cdp
@@ -186,6 +167,3 @@ LANGUAGES = [
 LOCALE_PATHS = [
     os.path.join(CORE_DIR,  'locale/'),
 ]
-
-#############################################################
-#############################################################
