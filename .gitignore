@@ -52,7 +52,7 @@ coverage.xml
 *.log
 local_*.py
 media/*
-static/*
+
 log/*
 logs/*
 
