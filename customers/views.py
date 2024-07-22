@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -29,7 +30,7 @@ class APIProfileView(APIView):
     def put(self, request, pk=None, *args, **kwargs):
         id = request.POST.get('id')
 
-        print("POST " + str(request.POST))
+
         if id is None:
             return Response({"status": "error", "data": "No id was send. Please send attribute id with Post"},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -67,7 +68,11 @@ class ProfileView(View):
         contactform = ContactForm(request.POST, user=request.user)
 
         context = {'contactform':contactform,'profile': self.profile,'profileform' :ProfileForm(instance=request.user.profile), 'segment': 'profile'}
-        return render(request, 'customers/profile.html', context)
+
+        if (settings.BASE_TEMPLATE =='layouts/base-dark.html'):
+            return render(request, 'customers/profile_dark.html', context)
+        return render(request, 'customers/profile_light.html', context)
+
 
     def post(self, request):
         form = ProfileForm(request.POST, request.FILES, instance=self.profile)
@@ -77,6 +82,7 @@ class ProfileView(View):
         passwort_2 = request.POST.get('passwort_2',None)
 
         if form.is_valid():
+            print("Valid")
              # here form has old password and we update new passwrd before saving form.  Yes you have rightonce we update passwrd and agaig
              #just save the form.save(() ) then passwrd is reverted with form password did you get it?~
             profile = form.save()

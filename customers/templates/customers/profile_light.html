@@ -66,14 +66,14 @@
     }
 </style>
 {% endblock stylesheets %}
-
-{% block content %}
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
       integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
 {% include 'includes/navigation.html' %}
-<div class="container">
+{% block content %}
+  <div class="container">
     <div class="row">
+
+
         <div class="col-12">
             <!-- Page title -->
             <div class="my-5">
@@ -290,9 +290,9 @@
                             <div id="alert" style="display:none;"></div>
                         </div>
                     </div>
-
-    </div>
 </div>
+              </div>
+
 {% endblock %}
 {% block javascripts %}
 

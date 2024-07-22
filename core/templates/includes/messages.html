@@ -1,0 +1,103 @@
+<div class="custom-container" id="messageblock">
+{% if messages or form.errors or formset.errors %}
+
+{% load i18n %}
+
+
+<style>
+    #window {
+    display: show; /* Hidden by default */
+    position: fixed; /* Stay in place front is invalid - may break your css so removed */
+    padding-top: 100px; /* Location of the box - don't know what this does?  If it is to move your modal down by 100px, then just change top below to 100px and remove this*/
+    left: 30%;
+    right:0; /* Full width (left and right 0) */
+    top: 30px;
+    bottom: 0; /* Full height top and bottom 0 */
+    overflow: auto; /* Enable scroll if needed */
+
+    z-index: 9999; /* Sit on top - higher than any other z-index in your site*/
+}
+</style>
+<style>
+.alert{
+
+z-index:9999;
+}
+</style>
+
+
+    <!-- Modal -->
+{% get_current_language as LANGUAGE_CODE %}
+
+
+
+{% if formset.errors %}
+    {% for error in formset.errors %}
+        {% if  error %}
+            <div class="alert alert-danger alert-dismissible fade show">{{error}}<button type="button" class="btn-close" data-bs-dismiss="alert" ></button></div>
+        {% endif %}
+    {% endfor %}
+
+
+
+
+
+{% endif %}
+
+        {% if form.non_field_errors %}
+
+<div class="alert alert-danger alert-dismissible fade show"> {{ form.non_field_errors }}<button type="button" class="btn-close" data-bs-dismiss="alert" ></button></div>
+
+
+    {% endif %}
+    {% if form.errors %}
+
+        <div class="alert alert-danger alert-dismissible fade show"> {{ form.errors }}<button type="button" class="btn-close" data-bs-dismiss="alert" ></button></div>
+
+
+      {% endif %}
+
+
+
+{% if messages %}
+
+    {% for message in messages %}
+
+
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'safe' %}info{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+
+
+                {% if 'noicon' not in message.tags %}
+                    {# Include an icon by default #}
+                    {% if 'success' in message.tags %}
+                        <i class="fas fa-check-circle"></i>
+                    {% elif 'info' in message.tags %}
+                        <i class="fas fa-info-circle"></i>
+                    {% elif 'warning' in message.tags %}
+                        <i class="fas fa-exclamation-triangle"></i>
+                    {% elif 'danger' in message.tags or 'error' in message.tags %}
+                        <i class="fas fa-exclamation-circle"></i>
+                    {% endif %}
+                {% endif %}
+
+                {# Allow HTML to be embedded in messages #}
+                {% if 'safe' in message.tags %}
+                    {{ message|safe }}
+                {% else %}
+                    {{ message }}
+                {% endif %}
+
+
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" >
+
+            </button>
+        </div>
+
+    {% endfor %}
+{% endif %}
+
+
+
+{% endif %}
+    </div>

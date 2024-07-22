@@ -15,7 +15,7 @@
                 <div class="col">
                 <div class="row justify-content-center form-bg-image" data-background="/static/assets/img/illustrations/signin.svg">
                     <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="signin-inner my-3 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="signin-inner my-3 my-lg-0 {% if base_template == 'layouts/base-fullscreen.html' %}bg-white {% endif %} shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
 
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">
@@ -39,7 +39,7 @@
                                 <div class="form-group mb-4">
                                     <label for="email">{% trans 'Username' %}</label>
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1"><span class="fas fa-user-circle"></span></span>
+                                        <span class="input-group-text"  id="basic-addon1" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %}><span class="fas fa-user-circle"></span></span>
                                         {{ form.username }}
                                     </div>  
                                 </div>
@@ -49,7 +49,7 @@
                                     <div class="form-group mb-4">
                                         <label for="password">{% trans 'Your Password' %}</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+                                            <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
                                             {{ form.password }}
                                         </div>  
                                     </div>
@@ -79,7 +79,7 @@
                     </div>
                 <div class="col">
 <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="signin-inner my-3 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="signin-inner my-3 my-lg-0 {% if base_template == 'layouts/base-fullscreen.html' %} bg-white {% endif %} shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                     <form method="post" action="" id="contact-form" class="mt-4">
 
                                 {% csrf_token %}

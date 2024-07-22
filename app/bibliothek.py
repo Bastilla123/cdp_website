@@ -26,9 +26,10 @@ def execute_request(url,data,expected_status):
         print("Response Statuscode {} ist nicht gleich dem erwartetet Statuscode {} Reponse: {}".format(response.status_code,expected_status,response.json()))
 #Insert new ingest
 def new_ingest(cdp_event,data):
-    print("New Ingest Event {} Data {} ".format(cdp_event,data))
+
     applicationid =  cdp_event["cdp_applicationid"]
     eventid = cdp_event["cdp_eventid"]
+    print("New Ingest URL {} Applicationid {} Eventid {} Event {} Data {} ".format(cdp_api_baseurl,applicationid,eventid,cdp_event, data))
     url = "{}/api/businessunits/{}/applications/{}/dataevents/{}/event".format(cdp_api_baseurl,cdp_businessunit,applicationid,eventid)
     print("Url "+str(url))
     data["userKey"] = cdp_api_username

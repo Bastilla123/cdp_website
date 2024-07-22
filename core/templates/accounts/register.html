@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row justify-content-center form-bg-image" data-background="/static/assets/img/illustrations/signin.svg">
                     <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="signin-inner my-3 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="signin-inner my-3 my-lg-0 {% if base_template == 'layouts/base-fullscreen.html' %} bg-white {% endif %} shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
 
                             <div class="text-center text-md-center mb-4 mt-md-0">
 
@@ -43,7 +43,7 @@
                                     <div class="form-group mb-4">
                                         <label for="email">{% trans 'Username' %}</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon3"><span class="fas fa-user-shield"></span></span>
+                                            <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon3"><span class="fas fa-user-shield"></span></span>
                                             {{ form.username }}
                                         </div>
                                         <span class="text-error">{{ form.username.errors }}</span>
@@ -54,7 +54,7 @@
                                     <div class="form-group mb-4">
                                         <label for="email">{% trans 'Email' %}</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon3"><span class="fas fa-envelope"></span></span>
+                                            <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon3"><span class="fas fa-envelope"></span></span>
                                             {{ form.email }}
                                         </div>
                                         <span class="text-error">{{ form.email.errors }}</span>
@@ -67,7 +67,7 @@
                                         <div class="form-group mb-4">
                                             <label for="password">{% trans 'Password' %}</label>
                                             <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
+                                                <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
                                                 {{ form.password1 }}
                                             </div>  
                                             <span class="text-error">{{ form.password1.errors }}</span>
@@ -78,7 +78,7 @@
                                         <div class="form-group mb-4">
                                             <label for="password">{% trans 'Password Check' %}</label>
                                             <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
+                                                <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
                                                 {{ form.password2 }}
                                             </div>  
                                             <span class="text-error">{{ form.password2.errors }}</span>

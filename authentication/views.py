@@ -65,7 +65,7 @@ def contact(request):
             # Process the form data here...
             return JsonResponse({'success': True})
         else:
-            print("Errors: ".format(form.errors))
+
             return JsonResponse({'success': False, 'errors': form.errors})
 
     return redirect('/')
@@ -81,27 +81,27 @@ def login_view(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
-            print("User "+str(user))
+
             if user is not None:
                 login(request, user)
 
-#                if hasattr(request.user,'profile'):
+                if hasattr(request.user,'profile'):
 
- #                   if request.user.profile.address is None:
+                    if request.user.profile.address is None:
 
-  #                      messages.error(request, _("Please enter complete profile data!"))
-   #                     return redirect("/customers/profile/")
-    #                else:
-     #                   p
-      #                  return redirect("/home")
-       #                 messages.error(request, _("Please enter complete profile data!"))
-        #                return redirect("/customers/profile/")
-         #       else:
+                        messages.error(request, _("Please enter complete profile data!"))
+                        return redirect("/customers/profile/")
+                    else:
 
-          #          print("Else")
-           #         Profile(user=request.user).save()
-            #        messages.error(request, _("Please enter complete profile data!"))
-             #       print("Redirect")
+                        return redirect("/home")
+                        messages.error(request, _("Please enter complete profile data!"))
+                        return redirect("/customers/profile/")
+                else:
+
+                    print("Else")
+                    Profile(user=request.user).save()
+                    messages.error(request, _("Please enter complete profile data!"))
+                    print("Redirect")
                 return redirect("/customers/profile/")
 
             else:
