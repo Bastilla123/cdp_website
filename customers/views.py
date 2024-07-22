@@ -17,6 +17,11 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from .forms import  ContactForm
+import logging
+logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        level=logging.DEBUG)
+
 
 @permission_classes([IsAuthenticated])
 class APIProfileView(APIView):
@@ -29,7 +34,7 @@ class APIProfileView(APIView):
 
     def put(self, request, pk=None, *args, **kwargs):
         id = request.POST.get('id')
-
+        logging.info('APIProfile PUT Request id {} POST Data {}'.format(id,request.POST))
 
         if id is None:
             return Response({"status": "error", "data": "No id was send. Please send attribute id with Post"},
@@ -37,24 +42,33 @@ class APIProfileView(APIView):
 
         profilentry = Profile.objects.filter(pk=id).first()
         if not profilentry:
-
-            return Response({"status": "error", "data": "Profile can't be found with pk {}".format(id)}, status=status.HTTP_400_BAD_REQUEST)
+            error = {"status": "error", "data": "Profile can't be found with pk {}".format(id)}
+            logging.exception(error)
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = ProfileSerializer(profilentry,data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+            info = {"status": "success", "data": serializer.data}
+            logging.info(info)
+            return Response(info, status=status.HTTP_200_OK)
         else:
-            return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            error = {"status": "error", "data": serializer.errors}
+            logging.exception(error)
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({'method': 'PUT'})
     def post(self, request):
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+            info = {"status": "success", "data": serializer.data}
+            logging.info(info)
+            return Response(info, status=status.HTTP_200_OK)
         else:
-            return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            error = {"status": "error", "data": serializer.errors}
+            logging.exception(error)
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class ProfileView(View):
@@ -82,7 +96,7 @@ class ProfileView(View):
         passwort_2 = request.POST.get('passwort_2',None)
 
         if form.is_valid():
-            print("Valid")
+
              # here form has old password and we update new passwrd before saving form.  Yes you have rightonce we update passwrd and agaig
              #just save the form.save(() ) then passwrd is reverted with form password did you get it?~
             profile = form.save()
