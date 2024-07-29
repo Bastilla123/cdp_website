@@ -33,11 +33,15 @@ class APIProfileView(APIView):
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
     def put(self, request, pk=None, *args, **kwargs):
+        info = 'APIProfileView PUT Request id {} POST Data {}'.format(id,request.POST)
+        print(info)
         id = request.POST.get('id')
-        logging.info('APIProfile PUT Request id {} POST Data {}'.format(id,request.POST))
+        logging.info(info)
 
         if id is None:
-            return Response({"status": "error", "data": "No id was send. Please send attribute id with Post"},
+            error = {"status": "error", "data": "No id was send. Please send attribute id with Post"}
+            logging.error(error.format(id, request.POST))
+            return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
         profilentry = Profile.objects.filter(pk=id).first()
