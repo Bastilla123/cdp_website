@@ -56,12 +56,12 @@ class APIProfileView(APIView):
 
     def put(self, request, *args, **kwargs):
         request_dict = pretty_request(request)
-        info = 'APIProfileView PUT Request Post Data {} Request {}'.format(request.POST,request_dict)
+        info = 'APIProfileView PUT Request PUT Data {} Request {}'.format(request.POST,request_dict)
         print(info)
-        #id = request.POST.get('id')
+
         logging.info(info)
-        first_name = request.POST.get('first_name',None)
-        last_name = request.POST.get('last_name',None)
+        first_name = request.PUT.get('first_name',None)
+        last_name = request.PUT.get('last_name',None)
 
         if first_name is None or last_name is None:
             error = {"status": "error", "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
