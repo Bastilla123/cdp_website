@@ -33,9 +33,9 @@ class APIProfileView(APIView):
         serializers = ProfileSerializer(result, many=True)
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
-    def put(self, request, pk=None, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
         request_dict = request.__dict__, file=sys.stderr
-        info = 'APIProfileView PUT Request Data {}'.format(request.POST,request_dict)
+        info = 'APIProfileView PUT Request Post Data {} Request {}'.format(request.POST,request_dict)
         print(info)
         id = request.POST.get('id')
         logging.info(info)
