@@ -23,7 +23,27 @@ from django.utils.html import escape
 logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.DEBUG)
+def pretty_request(request):
+    headers = ''
+    for header, value in request.META.items():
+        if not header.startswith('HTTP'):
+            continue
+        header = '-'.join([h.capitalize() for h in header[5:].lower().split('_')])
+        headers += '{}: {}\n'.format(header, value)
 
+    return (
+        '{method} HTTP/1.1\n'
+        'Content-Length: {content_length}\n'
+        'Content-Type: {content_type}\n'
+        '{headers}\n\n'
+        '{body}'
+    ).format(
+        method=request.method,
+        content_length=request.META['CONTENT_LENGTH'],
+        content_type=request.META['CONTENT_TYPE'],
+        headers=headers,
+        body=request.body,
+    )
 
 @permission_classes([IsAuthenticated])
 class APIProfileView(APIView):
@@ -35,25 +55,28 @@ class APIProfileView(APIView):
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
     def put(self, request, *args, **kwargs):
-        request_dict = HttpResponse(escape(repr(request)))
+        request_dict = pretty_request(request)
         info = 'APIProfileView PUT Request Post Data {} Request {}'.format(request.POST,request_dict)
         print(info)
-        id = request.POST.get('id')
+        #id = request.POST.get('id')
         logging.info(info)
+        first_name = request.POST.get('first_name',None)
+        last_name = request.POST.get('last_name',None)
 
-        if id is None:
-            error = {"status": "error", "data": "No id was send. Please send attribute id with Post"}
+        if first_name is None or last_name is None:
+            error = {"status": "error", "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
             logging.error(error)
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
-        profilentry = Profile.objects.filter(pk=id).first()
-        if not profilentry:
-            error = {"status": "error", "data": "Profile can't be found with pk {}".format(id)}
+        userentry = User.objects.filter(first_name=first_name, last_name=last_name).first()
+
+        if not userentry:
+            error = {"status": "error", "data": "Profile can't be found with first_name {} last_name {}".format(first_name, last_name)}
             logging.exception(error)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = ProfileSerializer(profilentry,data=request.data)
+        serializer = ProfileSerializer(userentry.profile,data=request.data)
         if serializer.is_valid():
             serializer.save()
             info = {"status": "success", "data": serializer.data}
@@ -74,7 +97,7 @@ class APIProfileView(APIView):
 
         if id is None:
             error = {"status": "error", "data": "No id was send. Please send attribute id with Post"}
-            logging.error(error.format(id, request.POST))
+            logging.error(error)
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
