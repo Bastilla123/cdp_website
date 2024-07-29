@@ -1,7 +1,4 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
+from customers.views import home
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
@@ -12,10 +9,11 @@ from django import template
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {'segment': 'index'}
+    #context = {'segment': 'index'}
 
-    html_template = loader.get_template('index.html')
-    return HttpResponse(html_template.render(context, request))
+    #html_template = loader.get_template('index.html')
+    #return HttpResponse(html_template.render(context, request))
+    return redirect('home')
 
 
 @login_required(login_url="/login/")
