@@ -18,7 +18,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from .forms import  ContactForm
 import logging
-import sys
+from django.http import HttpResponse
+from django.utils.html import escape
 logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.DEBUG)
@@ -34,7 +35,7 @@ class APIProfileView(APIView):
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
     def put(self, request, *args, **kwargs):
-        request_dict = request.__dict__, file=sys.stderr
+        request_dict = HttpResponse(escape(repr(request)))
         info = 'APIProfileView PUT Request Post Data {} Request {}'.format(request.POST,request_dict)
         print(info)
         id = request.POST.get('id')
