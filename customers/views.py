@@ -65,17 +65,17 @@ class APIProfileView(APIView):
     def post(self, request):
 
         logging.info("APIProfileView post: {}".format(request.POST))
-        return super().post(request)
-        # serializer = ProfileSerializer(data=request.data)
-        # if serializer.is_valid():
-        #     serializer.save()
-        #     info = {"status": "success", "data": serializer.data}
-        #     logging.info(info)
-        #     return Response(info, status=status.HTTP_200_OK)
-        # else:
-        #     error = {"status": "error", "data": serializer.errors}
-        #     logging.exception(error)
-        #     return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = ProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            info = {"status": "success", "data": serializer.data}
+            logging.info(info)
+            return Response(info, status=status.HTTP_200_OK)
+        else:
+            error = {"status": "error", "data": serializer.errors}
+            logging.exception(error)
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class ProfileView(View):
