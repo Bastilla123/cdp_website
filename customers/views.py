@@ -27,13 +27,13 @@ logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(me
 class APIProfileView(APIView):
 
     def get(self, request, *args, **kwargs):
-
+        logging.info("Get")
         result = Profile.objects.all()
         serializers = ProfileSerializer(result, many=True)
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
     def put(self, request, pk=None, *args, **kwargs):
-        info = 'APIProfileView PUT Request id {} POST Data {}'.format(id,request.POST)
+        info = 'APIProfileView PUT Request id {} Data {}'.format(id,request.POST)
         print(info)
         id = request.POST.get('id')
         logging.info(info)
@@ -63,19 +63,19 @@ class APIProfileView(APIView):
 
         return Response({'method': 'PUT'})
     def post(self, request):
-        info = 'APIProfileView PUT Request id {} POST Data {}'.format(id, request.POST)
-        print(info)
 
-        serializer = ProfileSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            info = {"status": "success", "data": serializer.data}
-            logging.info(info)
-            return Response(info, status=status.HTTP_200_OK)
-        else:
-            error = {"status": "error", "data": serializer.errors}
-            logging.exception(error)
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        logging.info("APIProfileView post: {}".format(request.POST))
+        return super().post(request)
+        # serializer = ProfileSerializer(data=request.data)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     info = {"status": "success", "data": serializer.data}
+        #     logging.info(info)
+        #     return Response(info, status=status.HTTP_200_OK)
+        # else:
+        #     error = {"status": "error", "data": serializer.errors}
+        #     logging.exception(error)
+        #     return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class ProfileView(View):
