@@ -63,6 +63,9 @@ class APIProfileView(APIView):
 
         return Response({'method': 'PUT'})
     def post(self, request):
+        info = 'APIProfileView PUT Request id {} POST Data {}'.format(id, request.POST)
+        print(info)
+
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
