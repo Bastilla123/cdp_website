@@ -43,7 +43,7 @@ class APIProfileView(APIView):
 
         if id is None:
             error = {"status": "error", "data": "No id was send. Please send attribute id with Post"}
-            logging.error(error.format(id, request.POST))
+            logging.error(error)
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
