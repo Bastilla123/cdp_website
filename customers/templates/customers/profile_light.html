@@ -279,19 +279,8 @@
         </div>
         <div class="col-12 mt-3">
                         <div class="card card-body bg-white border-light shadow-sm mb-4">
-                            <form method="post" action="" id="contact-form" class="mt-4">
-
-                                {% csrf_token %}
-
-                                <h1>{% trans 'Contact Us' %}</h1>
-                                {{ contactform.subject.label }}
-                                {{ contactform.subject }}
-                                {{ contactform.message.label }}
-                                {{ contactform.message }}
-                                <button type="submit" name="login" class="btn btn-block btn-primary">{% trans 'Send' %}</button>
-                            </form>
-                            <div id="alert" style="display:none;"></div>
-                        </div>
+{% include 'includes/contact_us.html %}
+                               </div>
                     </div>
 </div>
               </div>

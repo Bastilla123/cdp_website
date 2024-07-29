@@ -201,8 +201,47 @@
                     <button type="submit" class="btn btn-primary btn-lg">{% trans 'Update profile' %}</button>
                 </div>
             </form> <!-- Form END -->
+                      <div class="col-xxl-6 mb-5 mb-xxl-0">
+                        <div class="card card-bodyshadow-sm mb-4">
+                            <div class="bg-secondary-soft px-4 py-5 rounded" >
+                    {% include 'includes/contact_us.html' %}
+                                </div>
+                            </div>
+              </div>
   </div>
+
               </div>
               </div>
 </div>
 {% endblock %}
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+      $('#contact-form').on('submit', function(event) {
+
+        event.preventDefault();
+
+        $.ajax({
+          url: '{% url "contact" %}',
+          type: 'POST',
+          data: $(this).serialize(),
+          dataType: 'json',
+          success: function(response) {
+            if (response.success) {
+
+              $('#contact-form').hide();
+              $('#alert').html('<div class="alert alert-success">{% trans 'Thanks for message' %}</div>').show();
+            } else {
+
+              $('#alert').html('<div class="alert alert-danger">' + response.errors + '</div>').show();
+            }
+          }
+        });
+      });
+    });
+</script>
+
+{% endblock javascripts %}
