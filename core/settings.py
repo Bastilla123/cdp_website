@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'app',  # Enable the inner app
     'customers',
     'rest_framework',
+'django_middleware_global_request',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+'django_middleware_global_request.middleware.GlobalRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'

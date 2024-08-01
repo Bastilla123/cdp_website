@@ -1,3 +1,4 @@
+import secrets
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -18,8 +19,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from .forms import  ContactForm
 import logging
-from django.http import HttpResponse
-from django.utils.html import escape
+
 logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.DEBUG)
@@ -98,10 +98,35 @@ class APIProfileView(APIView):
         import json
         logging.info(info)
 
+        first_name = request.data.get('first_name', None)
+        last_name = request.data.get('last_name', None)
 
+        if first_name is None or last_name is None:
+            error = {"status": "error",
+                     "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
+            logging.error(error)
+            return Response(error,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        userentry = User.objects.filter(first_name=first_name, last_name=last_name).first()
+
+        if userentry:
+            error = {"status": "error",
+                     "data": "Profile exists with first_name {} last_name {}".format(first_name, last_name)}
+            logging.exception(error)
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
         serializer = ProfileSerializer(data=request.data)
+
+
+
         if serializer.is_valid():
+
+
+
+
+
             serializer.save()
+
             info = {"status": "success", "data": serializer.data}
             logging.info(info)
             return Response(info, status=status.HTTP_200_OK)
