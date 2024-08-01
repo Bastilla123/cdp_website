@@ -92,18 +92,12 @@ class APIProfileView(APIView):
         return Response({'method': 'PUT'})
     def post(self, request):
 
-        info = 'APIProfileView POST Request Data {}'.format(request.POST)
+        request_dict = pretty_request(request)
+        info = 'APIProfileView PUT Request POST Data {} Request {}'.format(request.POST, request_dict)
         print(info)
-        id = request.POST.get('id')
+        import json
         logging.info(info)
 
-        if id is None:
-            error = {"status": "error", "data": "No id was send. Please send attribute id with Post"}
-            logging.error(error)
-            return Response(error,
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        logging.info("APIProfileView post: {}".format(request.POST))
 
         serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid():
