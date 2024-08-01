@@ -93,10 +93,14 @@ class APIProfileView(APIView):
     def post(self, request):
 
         request_dict = pretty_request(request)
-        info = 'APIProfileView PUT Request POST Data {} Request {}'.format(request.POST, request_dict)
+        info = 'APIProfileView POST Request Request {} Request Body {}'.format(request_dict,request.body)
         print(info)
         import json
         logging.info(info)
+
+        data = json.loads(request.body)
+        print("Json Data "+str(data))
+        logging.info("Json Data "+str(data))
 
         first_name = request.data.get('first_name', None)
         last_name = request.data.get('last_name', None)
