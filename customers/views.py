@@ -115,15 +115,11 @@ class APIProfileView(APIView):
                      "data": "Profile exists with first_name {} last_name {}".format(first_name, last_name)}
             logging.exception(error)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
-        serializer = ProfileSerializer(data=request.data)
+        serializer = ProfileSerializer(data=request.data,many=True)
 
 
 
         if serializer.is_valid():
-
-
-
-
 
             serializer.save()
 
