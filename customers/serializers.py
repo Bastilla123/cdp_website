@@ -19,13 +19,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         return Profile.objects.create(**validated_data)
 
     def validate(self, data):
-        request = get_request()
+        request = self.context["request"]
         print("Post "+str(request.POST))
-        username = '{}_{}'.format(request.POST["first_name"], request.POST["last_name"])
+        username = '{}_{}'.format(request.data["first_name"], request.data["last_name"])
         password = 'secrets.token_urlsafe(13)'
         try:
             userentry = User.objects.create_user(username=username,
-                                                 first_name=request.POST["first_name"], last_name=request.POST["last_name"],
+                                                 first_name=request.data["first_name"], last_name=request.data["last_name"],
                                                  email='',
                                                  password=password)
             userentry.save()

@@ -51,7 +51,7 @@ class APIProfileView(APIView):
     def get(self, request, *args, **kwargs):
         logging.info("Get")
         result = Profile.objects.all()
-        serializers = ProfileSerializer(result, many=True)
+        serializers = ProfileSerializer(result, many=True, context={"request": request},)
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
     def put(self, request, *args, **kwargs):
@@ -78,7 +78,7 @@ class APIProfileView(APIView):
             logging.exception(error)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = ProfileSerializer(userentry.profile,data=request.data)
+        serializer = ProfileSerializer(userentry.profile,data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             info = {"status": "success", "data": serializer.data}
@@ -119,11 +119,10 @@ class APIProfileView(APIView):
                      "data": "Profile exists with first_name {} last_name {}".format(first_name, last_name)}
             logging.exception(error)
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
-        serializer = ProfileSerializer(data=request.data,many=True)
+        serializer = ProfileSerializer(data=request.data, context={"request": request})
 
 
-
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
 
             serializer.save()
 
