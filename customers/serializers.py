@@ -20,7 +20,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         request = get_request()
-
+        print("Post "+str(request.POST))
         username = '{}_{}'.format(request.POST["first_name"], request.POST["last_name"])
         password = 'secrets.token_urlsafe(13)'
         try:
