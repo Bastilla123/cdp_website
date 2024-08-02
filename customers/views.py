@@ -179,13 +179,14 @@ class ProfileView(View):
                 u.save()
                 messages.success(request, 'Password is successfully changed')
             cdp_event_list = settings.CDP_EVENT_LIST
+
             data = {
 
                 "email": form.cleaned_data.get('email'),
 
                 "firstname": form.cleaned_data.get('first_name'),
                 "lastname": form.cleaned_data.get('last_name'),
-                "birthdate":str(form.cleaned_data.get('birthday').isoformat()),
+
                 "gender":form.cleaned_data.get('gender'),
                 "phone": form.cleaned_data.get('phone'),
                 "street": form.cleaned_data.get('address'),
@@ -203,6 +204,10 @@ class ProfileView(View):
             data['instagram'] = form.cleaned_data['instagram']
             data['dribble'] = form.cleaned_data['dribble']
             data['pinterest'] = form.cleaned_data['pinterest']
+
+            birthdate = form.cleaned_data.get('birthday', None)
+            if birthdate is not None:
+                 data['birthdate'] = str(birthdate.isoformat())
 
             new_ingest(cdp_event_list["change_profile"], data)  # Insert new event change_profile in cdp
 

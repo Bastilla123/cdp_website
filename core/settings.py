@@ -164,7 +164,7 @@ APP_TITLE = config('APP_TITLE', None)
 LANGUAGE_CODE = 'de-de'
 USE_I18N = True
 USE_L10N = False
-DATE_INPUT_FORMATS = ('%m/%d/%Y','%d-%m-%Y','%Y-%m-%d')
+DATE_INPUT_FORMATS = ('%d.%m.%Y','%d-%m-%Y','%Y-%m-%d')
 
 
 LANGUAGES = [

@@ -43,7 +43,7 @@ class ProfileForm(forms.ModelForm):
     first_name = forms.CharField(max_length=255,label=_("Firstname"))
     last_name = forms.CharField(max_length=255,label= _("Lastname"),)
     email = forms.EmailField()
-    birthday = forms.DateField(widget=forms.DateInput(format = '%d/%m/%Y'), input_formats=settings.DATE_INPUT_FORMATS,label = _("Birthday"))
+    birthday = forms.DateField(widget=forms.DateInput(format = '%d.%m.%Y'), input_formats=settings.DATE_INPUT_FORMATS,label = _("Birthday"),required=False)
 
     class Meta:
         model = Profile
