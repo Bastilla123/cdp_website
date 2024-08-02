@@ -1,10 +1,10 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
-# Create your models here.
 
+class Log(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    loglevel = models.CharField(max_length=1,default="")
+    text = models.TextField(default="")

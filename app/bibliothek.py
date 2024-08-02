@@ -1,6 +1,7 @@
 import requests
 from django.conf import settings
 import logging
+from .models import Log
 logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.DEBUG)
@@ -10,7 +11,8 @@ cdp_api_username = settings.CDP_API_USERNAME
 cdp_api_password = settings.CDP_API_PASSWORD
 cdp_businessunit = settings.CDP_BUSINESSUNIT
 
-
+def log(loglevel,text):
+    Log(loglevel = loglevel, text = text).save()
 
 def execute_request(url,data,expected_status):
 

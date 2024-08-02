@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
-from django_middleware_global_request import get_request
+
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile

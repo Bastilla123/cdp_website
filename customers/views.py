@@ -18,11 +18,9 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from .forms import  ContactForm
-import logging
 
-logging.basicConfig(filename='api.log', format='%(asctime)s %(levelname)-8s %(message)s',
-                        datefmt='%Y-%m-%d %H:%M:%S',
-                        level=logging.DEBUG)
+from app.bibliothek import log
+
 def pretty_request(request):
     headers = ''
     for header, value in request.META.items():
@@ -49,7 +47,7 @@ def pretty_request(request):
 class APIProfileView(APIView):
 
     def get(self, request, *args, **kwargs):
-        logging.info("Get")
+
         result = Profile.objects.all()
         serializers = ProfileSerializer(result, many=True, context={"request": request},)
         return Response({'status': 'success', "students": serializers.data}, status=200)
@@ -57,9 +55,9 @@ class APIProfileView(APIView):
     def put(self, request, *args, **kwargs):
         request_dict = pretty_request(request)
         info = 'APIProfileView PUT Request PUT Data {} Request {}'.format(request.POST,request_dict)
-        print(info)
+        log('i',info)
         import json
-        logging.info(info)
+
 
 
         first_name = request.data.get('first_name',None)
@@ -67,7 +65,8 @@ class APIProfileView(APIView):
 
         if first_name is None or last_name is None:
             error = {"status": "error", "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
-            logging.error(error)
+            log('e', error)
+
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
@@ -75,18 +74,21 @@ class APIProfileView(APIView):
 
         if not userentry:
             error = {"status": "error", "data": "Profile can't be found with first_name {} last_name {}".format(first_name, last_name)}
-            logging.exception(error)
+            log('e', error)
+
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
         serializer = ProfileSerializer(userentry.profile,data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             info = {"status": "success", "data": serializer.data}
-            logging.info(info)
+            log('i', info)
+
             return Response(info, status=status.HTTP_200_OK)
         else:
             error = {"status": "error", "data": serializer.errors}
-            logging.exception(error)
+            log('e', error)
+
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({'method': 'PUT'})
@@ -94,9 +96,9 @@ class APIProfileView(APIView):
 
         request_dict = pretty_request(request)
         info = 'APIProfileView POST Request Request {} Request Body {}'.format(request_dict,request.body)
-        print(info)
+        log('i', info)
 
-        logging.info(info)
+
 
         first_name = request.data.get('first_name', None)
         last_name = request.data.get('last_name', None)
@@ -104,7 +106,8 @@ class APIProfileView(APIView):
         if first_name is None or last_name is None:
             error = {"status": "error",
                      "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
-            logging.error(error)
+            log('e', error)
+
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
@@ -113,7 +116,8 @@ class APIProfileView(APIView):
         if userentry:
             error = {"status": "error",
                      "data": "Profile exists with first_name {} last_name {}".format(first_name, last_name)}
-            logging.exception(error)
+            log('e', error)
+
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
         serializer = ProfileSerializer(data=request.data, context={"request": request})
 
@@ -123,11 +127,13 @@ class APIProfileView(APIView):
             serializer.save()
 
             info = {"status": "success", "data": serializer.data}
-            logging.info(info)
+            log('i', info)
+
             return Response(info, status=status.HTTP_200_OK)
         else:
             error = {"status": "error", "data": serializer.errors}
-            logging.exception(error)
+            log('e', error)
+
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -156,6 +162,7 @@ class ProfileView(View):
         passwort_2 = request.POST.get('passwort_2',None)
 
         if form.is_valid():
+
 
              # here form has old password and we update new passwrd before saving form.  Yes you have rightonce we update passwrd and agaig
              #just save the form.save(() ) then passwrd is reverted with form password did you get it?~

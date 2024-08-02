@@ -1,19 +1,21 @@
-from customers.views import home
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
+from .models import Log
 
 
 @login_required(login_url="/login/")
 def index(request):
-    #context = {'segment': 'index'}
 
-    #html_template = loader.get_template('index.html')
-    #return HttpResponse(html_template.render(context, request))
     return redirect('home')
+
+@login_required(login_url='/login/')
+def log_view(request):
+    logentrys = Log.objects.all()
+    context = {'logsentrys':logentrys}
+    return render(request, 'logtableview.html',context)
 
 
 @login_required(login_url="/login/")

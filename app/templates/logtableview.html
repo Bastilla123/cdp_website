@@ -1,0 +1,41 @@
+{% extends base_template %}
+{% load static %}
+{% load i18n %}
+{% block title %} Log {% endblock %}
+
+{% block content %}
+
+
+
+  <div class="">
+    <div class="row">
+
+
+        <div class="col-12">
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{% trans 'Created At' %}</th>
+      <th scope="col">{% trans 'Updated At' %}</th>
+      <th scope="col">{% trans 'Loglevel' %}</th>
+        <th scope="col">{% trans 'Logtext' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for entry in logsentrys %}
+    <tr>
+      <th scope="row">{{ entry.id }}</th>
+      <td>{{ entry.created_at }}</td>
+      <td>{{ entry.updated_at }}</td>
+      <td>{{ entry.loglevel }}</td>
+        <td>{{ entry.text }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
