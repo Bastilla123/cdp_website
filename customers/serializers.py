@@ -20,21 +20,21 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         request = self.context["request"]
-        print("Post "+str(request.POST))
-        username = '{}_{}'.format(request.data["first_name"], request.data["last_name"])
-        password = 'secrets.token_urlsafe(13)'
-        try:
-            userentry = User.objects.create_user(username=username,
+        if request.method == "POST":
+            username = '{}_{}'.format(request.data["first_name"], request.data["last_name"])
+            password = 'secrets.token_urlsafe(13)'
+            try:
+                userentry = User.objects.create_user(username=username,
                                                  first_name=request.data["first_name"], last_name=request.data["last_name"],
                                                  email='',
                                                  password=password)
-            userentry.save()
-        except Exception as e:
-            error = {"status": "error", "Error": "Error on saving User {}".format(e)}
-            logging.exception(error)
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+                userentry.save()
+            except Exception as e:
+                error = {"status": "error", "Error": "Error on saving User {}".format(e)}
+                logging.exception(error)
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
-        data["user"] = userentry
+            data["user"] = userentry
 
         return data
 
