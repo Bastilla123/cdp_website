@@ -1,3 +1,7 @@
+from django.db.models import Func
+
+from django.db.models.functions import Greatest
+from django.contrib.postgres.search import TrigramSimilarity,TrigramDistance
 import secrets
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -154,12 +158,16 @@ class ProfileView(View):
         return render(request, 'customers/profile_light.html', context)
 
 
+
+
+
     def post(self, request):
         form = ProfileForm(request.POST, request.FILES, instance=self.profile)
 
 
         passwort_1 = request.POST.get('passwort_1',None)
         passwort_2 = request.POST.get('passwort_2',None)
+
 
         if form.is_valid():
 
