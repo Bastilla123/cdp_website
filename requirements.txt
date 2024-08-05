@@ -12,3 +12,4 @@ whitenoise
 Pillow
 python-decouple
 django-middleware-global-request
+jarowinkler #fuzzy search

@@ -22,8 +22,48 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from .forms import  ContactForm
+from jarowinkler import jarowinkler_similarity
 
 from app.bibliothek import log
+def appendList(l,element):
+    l.append(element)
+    return l
+#gehe durch alle Profile und mache einen fuzzy search nach der jaro winkler Methode und gebe wenn ein Datensatz existiert mit einem Mindestscore > score_cutoff
+    #den Höchstwert zurück
+def fuzzy_search_profile(post_firstname,post_lastname,post_zip,post_city,post_email,score_cutoff):
+
+    allprofiles = Profile.objects.all()
+    newtable = []
+
+    for profile in allprofiles:
+        searchstring1 = "{} {} {} {}".format(profile.user.first_name,profile.user.last_name,profile.zip,profile.city)
+        searchstring2 = "{} {} {} {}".format(post_firstname, post_lastname, post_zip, post_city)
+        jaroscore = jarowinkler_similarity(searchstring1, searchstring2)
+        if jaroscore > score_cutoff:
+            templist = [profile.id, jaroscore]
+
+            templist = [profile.id,jaroscore]
+            appendList(newtable,templist)
+
+        searchstring1 = "{} {}".format(profile.user.email, profile.user.last_name)
+        searchstring2 = "{} {} ".format(post_email, post_lastname)
+        jaroscore = jarowinkler_similarity(searchstring1, searchstring2)
+
+        if jaroscore > score_cutoff:
+            templist = [profile.id, jaroscore]
+
+            appendList(newtable,templist)
+
+    #Rückgabe der id mit dem höchsten Score
+    if len(newtable) > 0:
+        return max(newtable, key=lambda x: x[1])
+    else:
+        return []
+
+
+
+
+
 
 def pretty_request(request):
     headers = ''
@@ -46,7 +86,6 @@ def pretty_request(request):
         headers=headers,
         body=request.body,
     )
-
 @permission_classes([IsAuthenticated])
 class APIProfileView(APIView):
 
@@ -56,89 +95,93 @@ class APIProfileView(APIView):
         serializers = ProfileSerializer(result, many=True, context={"request": request},)
         return Response({'status': 'success', "students": serializers.data}, status=200)
 
-    def put(self, request, *args, **kwargs):
-        request_dict = pretty_request(request)
-        info = 'APIProfileView PUT Request PUT Data {} Request {}'.format(request.POST,request_dict)
-        log('i',info)
-        import json
 
-
-
-        first_name = request.data.get('first_name',None)
-        last_name = request.data.get('last_name',None)
-
-        if first_name is None or last_name is None:
-            error = {"status": "error", "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
-            log('e', error)
-
-            return Response(error,
-                            status=status.HTTP_400_BAD_REQUEST)
-
-        userentry = User.objects.filter(first_name=first_name, last_name=last_name).first()
-
-        if not userentry:
-            error = {"status": "error", "data": "Profile can't be found with first_name {} last_name {}".format(first_name, last_name)}
-            log('e', error)
-
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = ProfileSerializer(userentry.profile,data=request.data, context={"request": request})
-        if serializer.is_valid():
-            serializer.save()
-            info = {"status": "success", "data": serializer.data}
-            log('i', info)
-
-            return Response(info, status=status.HTTP_200_OK)
-        else:
-            error = {"status": "error", "data": serializer.errors}
-            log('e', error)
-
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response({'method': 'PUT'})
     def post(self, request):
 
-        request_dict = pretty_request(request)
-        info = 'APIProfileView POST Request Request {} Request Body {}'.format(request_dict,request.body)
+
+        info = 'APIProfileView POST Request Request {}'.format(request.data)
         log('i', info)
 
+        post_firstname = request.data.get('first_name', None)
+        post_lastname = request.data.get('last_name', None)
+        post_zip = request.data.get('zip', None)
+        post_city = request.data.get('city', None)
+        post_email = request.data.get('email', None)
 
 
-        first_name = request.data.get('first_name', None)
-        last_name = request.data.get('last_name', None)
+        if (post_lastname is None or post_firstname is None):
 
-        if first_name is None or last_name is None:
             error = {"status": "error",
-                     "data": "No first_name or lastname was send. Please send attribute first_name and last_name with Post"}
+                     "data": "Please send last_name and first_name with Post"}
+            log('e', error)
+            return Response(error,
+                            status=status.HTTP_400_BAD_REQUEST)
+        if ((post_lastname is None and post_email is None ) or (post_firstname is None and post_email is None ) or (post_zip is None and post_email is None ) or ( post_city is None and post_email is None )
+        ) :
+
+            error = {"status": "error",
+                     "data": "Please send (first_name and last_name and zip and city ) or (last_name and email) with Post"}
             log('e', error)
 
             return Response(error,
                             status=status.HTTP_400_BAD_REQUEST)
 
-        userentry = User.objects.filter(first_name=first_name, last_name=last_name).first()
-
-        if userentry:
-            error = {"status": "error",
-                     "data": "Profile exists with first_name {} last_name {}".format(first_name, last_name)}
-            log('e', error)
-
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
-        serializer = ProfileSerializer(data=request.data, context={"request": request})
 
 
-        if serializer.is_valid(raise_exception=True):
+        fuzzyprofiles = fuzzy_search_profile(post_firstname, post_lastname, post_zip, post_city, post_email, 0.95)
 
-            serializer.save()
 
-            info = {"status": "success", "data": serializer.data}
-            log('i', info)
+        #Update
+        if fuzzyprofiles:
 
-            return Response(info, status=status.HTTP_200_OK)
+            profileentry = Profile.objects.filter(id=fuzzyprofiles[0]).first()
+
+            if not profileentry:
+                error = {"status": "error",
+                         "data": "Profile can't be found with first_name {} last_name {}".format(post_firstname, post_lastname)}
+                log('e', error)
+
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
+
+            serializer = ProfileSerializer(profileentry, data=request.data, context={"request": request})
+            if serializer.is_valid():
+                serializer.user = profileentry.user
+                serializer.save()
+                info = {"Update":"Update dataset because existing dataset are found with fuzzy search","status": "success", "data": serializer.data}
+                log('i', info)
+
+                return Response(info, status=status.HTTP_200_OK)
+        #Insert
         else:
-            error = {"status": "error", "data": serializer.errors}
-            log('e', error)
 
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+            username = '{}_{}'.format(post_firstname, post_lastname)
+            password = 'secrets.token_urlsafe(13)'
+            try:
+                userentry = User.objects.create_user(username=username,
+                                                         first_name=request.data["first_name"], last_name=request.data["last_name"],
+                                                         email='',
+                                                         password=password)
+                userentry.save()
+            except Exception as e:
+                error = {"status": "error", "Error": "Error on saving User {}".format(e)}
+                log('e', error)
+
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
+            serializer = ProfileSerializer(data=request.data, context={"request": request})
+
+            if serializer.is_valid(raise_exception=True):
+
+                serializer.save(user=userentry)
+
+                info = {"Insert":"Insert new dataset because no existing dataset are found with fuzzy search","status": "success", "data": serializer.data}
+                log('i', info)
+
+                return Response(info, status=status.HTTP_200_OK)
+            else:
+                error = {"status": "error", "data": serializer.errors}
+                log('e', error)
+
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class ProfileView(View):
