@@ -166,6 +166,25 @@ USE_I18N = True
 USE_L10N = False
 DATE_INPUT_FORMATS = ('%d.%m.%Y','%d-%m-%Y','%Y-%m-%d')
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 LANGUAGES = [
 ('de', _('German')),
