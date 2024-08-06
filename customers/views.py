@@ -153,8 +153,12 @@ class APIProfileView(APIView):
                 return Response(info, status=status.HTTP_200_OK)
         #Insert
         else:
+            while 1:
 
-            username = '{}_{}'.format(post_firstname, post_lastname)
+                username = 'secrets.token_urlsafe(13)'
+                userentry = User.objects.filter(username=username).first()
+                if userentry is None:
+                    exit
             password = 'secrets.token_urlsafe(13)'
             try:
                 userentry = User.objects.create_user(username=username,
