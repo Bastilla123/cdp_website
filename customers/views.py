@@ -159,7 +159,9 @@ class APIProfileView(APIView):
                 userentry = User.objects.filter(username=username).first()
                 #when username is free then exit loop
                 if not userentry:
-                    exit
+                    break
+                if userentry is None:
+                    break
             password = 'secrets.token_urlsafe(13)'
             try:
                 userentry = User.objects.create_user(username=username,
