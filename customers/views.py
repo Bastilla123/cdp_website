@@ -40,7 +40,7 @@ def fuzzy_search_profile(post_firstname,post_lastname,post_zip,post_city,post_em
         searchstring2 = "{} {} {} {}".format(post_firstname, post_lastname, post_zip, post_city)
         jaroscore = jarowinkler_similarity(searchstring1, searchstring2)
         if jaroscore > score_cutoff:
-            templist = [profile.id, jaroscore]
+
 
             templist = [profile.id,jaroscore]
             appendList(newtable,templist)

@@ -17,7 +17,7 @@ def contact(request):
         form = ContactForm(request.POST, user=request.user)
 
         if form.is_valid():
-            print(request.user.profile.address)
+
             if request.user.is_authenticated:
                 if (request.user.profile.zip is None):
                     zip = 0
@@ -61,7 +61,7 @@ def contact(request):
 
             }
 
-            new_ingest(cdp_event_list["new_contact"],data) #Insert a new contact event in cdp
+            new_ingest(cdp_event_list["new_contact_form"],data) #Insert a new contact event in cdp
             # Process the form data here...
             return JsonResponse({'success': True})
         else:
@@ -98,18 +98,18 @@ def login_view(request):
                         return redirect("/customers/profile/")
                 else:
 
-                    print("Else")
+
                     Profile(user=request.user).save()
                     messages.error(request, _("Please enter complete profile data!"))
-                    print("Redirect")
+
                 return redirect("/customers/profile/")
 
             else:
-                print("Invalid")
+
                 msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
-            print("Error validating form")
+            p
     contactform = ContactForm()
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg, "contactform": contactform})
