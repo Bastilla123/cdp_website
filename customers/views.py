@@ -153,16 +153,22 @@ class APIProfileView(APIView):
                 return Response(info, status=status.HTTP_200_OK)
         #Insert
         else:
+            counter = 0
             while 1:
+                if counter == 5:
+                    error = {"status": "error", "Error": "Es wurde versucht 5 mal einen random Username erfolglos zu erstellen. Versuchen Sie es nochmals"}
+                    log('e', error)
 
-                username = 'secrets.token_urlsafe(13)'
+                    return Response(error, status=status.HTTP_400_BAD_REQUEST)
+                username = secrets.token_urlsafe(13)
                 userentry = User.objects.filter(username=username).first()
+
                 #when username is free then exit loop
                 if not userentry:
                     break
                 if userentry is None:
                     break
-            password = 'secrets.token_urlsafe(13)'
+            password = secrets.token_urlsafe(13)
             try:
                 userentry = User.objects.create_user(username=username,
                                                          first_name=request.data["first_name"], last_name=request.data["last_name"],
