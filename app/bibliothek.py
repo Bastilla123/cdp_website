@@ -31,7 +31,8 @@ def execute_request(url,data,expected_status):
     if response.status_code != expected_status:
 
         log('e',"Response Statuscode {} ist nicht gleich dem erwartetet Statuscode {} Reponse: {}".format(response.status_code,expected_status,response.json()))
-
+        return False
+    return True
 #Insert new ingest
 def new_ingest(cdp_event,data):
 
@@ -42,4 +43,4 @@ def new_ingest(cdp_event,data):
 
     data["userKey"] = cdp_api_username
     data["secret"] = cdp_api_password
-    execute_request(url, data,202)
+    return execute_request(url, data,202)

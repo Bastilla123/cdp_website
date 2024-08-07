@@ -34,15 +34,16 @@
           data: $(this).serialize(),
           dataType: 'json',
           success: function(response) {
-            if (response.success) {
+
 
               $('#contact-form').hide();
               $('#alert').html('<div class="alert alert-success">{% trans 'Thanks for message' %}</div>').show();
-            } else {
+            },
+            error: function(response) {
 
-              $('#alert').html('<div class="alert alert-danger">' + response.errors + '</div>').show();
+              $('#alert').html('<div class="alert alert-danger">' + response.responseJSON.error + '</div>').show();
             }
-          }
+
         });
       });
     });

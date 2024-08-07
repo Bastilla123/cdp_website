@@ -273,9 +273,11 @@ class ProfileView(View):
             if birthdate is not None:
                  data['birthdate'] = str(birthdate.isoformat())
 
-            new_ingest(cdp_event_list["change_profile"], data)  # Insert new event change_profile in cdp
-
-            messages.success(request, 'Profile saved successfully')
+            status = new_ingest(cdp_event_list["change_profile"], data)  # Insert new event change_profile in cdp
+            if status == False:
+                 messages.error(request, 'Ein Fehler ist aufgetreten bei der Verbindung zu dem CDP. Schauen sie bitte im Log nach')
+            else:
+                messages.success(request, 'Profile saved successfully')
         else:
 
             messages.error(request, form_validation_error(form))

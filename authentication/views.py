@@ -62,17 +62,20 @@ def contact(request):
 
                     }
 
-                new_ingest(cdp_event_list["new_contact_form"], data)  # Insert a new contact event in cdp
+                status = new_ingest(cdp_event_list["new_contact_form"], data)  # Insert a new contact event in cdp
+                if status == False:
+
+                    return JsonResponse({'error': 'Ein Fehler ist aufgetreten bei der Verbindung zu dem CDP. Schauen sie bitte im Log nach'}, status=404)
             except Exception as e:
-                print("Exception")
+
                 return JsonResponse({'error': e}, status=403)
             # Process the form data here...
-            print("Success")
+
             return JsonResponse({'success': True}, status=200)
 
         else:
-            print("Not valid")
-            return JsonResponse({'errors': form.errors}, status=403)
+
+            return JsonResponse({'error': form.errors}, status=403)
 
 
     return redirect('/')
