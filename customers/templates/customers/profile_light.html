@@ -277,41 +277,6 @@
                 </div>
             </form> <!-- Form END -->
         </div>
-        <div class="col-12 mt-3">
-                        <div class="card card-body bg-white border-light shadow-sm mb-4">
-{% include 'includes/contact_us.html' %}
-                               </div>
-                    </div>
-</div>
-              </div>
+
 
 {% endblock %}
-{% block javascripts %}
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function() {
-      $('#contact-form').on('submit', function(event) {
-
-        event.preventDefault();
-        $.ajax({
-          url: '{% url "contact" %}',
-          type: 'POST',
-          data: $(this).serialize(),
-          dataType: 'json',
-          success: function(response) {
-            if (response.success) {
-
-              $('#contact-form').hide();
-              $('#alert').html('<div class="alert alert-success">{% trans 'Thanks for message' %}</div>').show();
-            } else {
-
-              $('#alert').html('<div class="alert alert-danger">' + response.errors + '</div>').show();
-            }
-          }
-        });
-      });
-    });
-</script>
-
-{% endblock javascripts %}

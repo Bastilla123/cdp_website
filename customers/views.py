@@ -282,4 +282,7 @@ class ProfileView(View):
         return redirect('profile')
 @login_required(login_url='/login/')
 def home(request):
-    return render(request, 'home.html')
+    contactform = ContactForm(request.POST, request=request)
+
+    context = {'contactform': contactform}
+    return render(request, 'home.html',context = context)

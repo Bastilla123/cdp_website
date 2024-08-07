@@ -14,7 +14,7 @@ def index(request):
 @login_required(login_url='/login/')
 def log_view(request):
     logentrys = Log.objects.all()
-    print("Entrys "+str(logentrys))
+
     context = {'logsentrys':logentrys}
     return render(request, 'logtableview.html',context)
 
