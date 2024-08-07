@@ -14,61 +14,69 @@ cdp_event_list = settings.CDP_EVENT_LIST
 
 def contact(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST, user=request.user)
+
+        form = ContactForm(request.POST, request=request)
 
         if form.is_valid():
 
-            if request.user.is_authenticated:
-                if (request.user.profile.zip is None):
-                    zip = 0
+            try:
+                if request.user.is_authenticated:
+                    if (request.user.profile.zip is None):
+                        zip = 0
+                    else:
+                        zip = str(request.user.profile.zip)
+                    if (request.user.profile.address is None):
+                        street = ""
+                    else:
+                        street = str(request.user.profile.address)
+                    if (request.user.profile.number is None):
+                        number = ""
+                    else:
+                        number = str(request.user.profile.number)
+                    if (request.user.profile.city is None):
+                        city = ""
+                    else:
+                        city = str(request.user.profile.address)
+                    data = {
+                        "email": request.user.email,
+                        "subject": form.cleaned_data['subject'],
+                        "message": form.cleaned_data['message'],
+                        "firstname": request.user.first_name,
+                        "lastname": request.user.last_name,
+                        "street": street + " " + number,
+                        "zip": zip,
+                        "city": city
+
+                    }
                 else:
-                    zip = str(request.user.profile.zip)
-                if (request.user.profile.address is None):
-                    street = ""
-                else:
-                    street = str(request.user.profile.address)
-                if (request.user.profile.number is None):
-                    number = ""
-                else:
-                    number = str(request.user.profile.number)
-                if (request.user.profile.city is None):
-                    city = ""
-                else:
-                    city = str(request.user.profile.address)
-                data = {
-                    "email": request.user.email,
-                    "subject": form.cleaned_data['subject'],
-                    "message": form.cleaned_data['message'],
-                    "firstname": request.user.first_name,
-                    "lastname": request.user.last_name,
-                    "street": street + " " + number,
-                    "zip": zip,
-                    "city": city
 
+                    data = {
+                        "email": form.cleaned_data['email'],
+                        "subject": form.cleaned_data['subject'],
+                        "message": form.cleaned_data['message'],
+                        "firstname": form.cleaned_data['first_name'],
+                        "lastname": form.cleaned_data['last_name'],
+                        "street": form.cleaned_data['street'],
+                        "zip": form.cleaned_data['zip'],
+                        "city": form.cleaned_data['city'],
 
-                }
-            else:
-                data = {
-                "email": form.cleaned_data['email'],
-                "subject": form.cleaned_data['subject'],
-                "message": form.cleaned_data['message'],
-                "firstname": form.cleaned_data['first_name'],
-                "lastname": form.cleaned_data['last_name'],
-                "street": form.cleaned_data['street'],
-                "zip": form.cleaned_data['zip'],
-                "city": form.cleaned_data['city'],
+                    }
 
-
-            }
-
-            new_ingest(cdp_event_list["new_contact_form"],data) #Insert a new contact event in cdp
+                new_ingest(cdp_event_list["new_contact_form"], data)  # Insert a new contact event in cdp
+            except Exception as e:
+                print("Exception")
+                return JsonResponse({'error': e}, status=403)
             # Process the form data here...
-            return JsonResponse({'success': True})
-        else:
+            print("Success")
+            return JsonResponse({'success': True}, status=200)
 
-            return JsonResponse({'success': False, 'errors': form.errors})
+        else:
+            print("Not valid")
+            return JsonResponse({'errors': form.errors}, status=403)
+
 
     return redirect('/')
+
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -85,7 +93,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
 
-                if hasattr(request.user,'profile'):
+                if hasattr(request.user, 'profile'):
 
                     if request.user.profile.address is None:
 
@@ -98,7 +106,6 @@ def login_view(request):
                         return redirect("/customers/profile/")
                 else:
 
-
                     Profile(user=request.user).save()
                     messages.error(request, _("Please enter complete profile data!"))
 
@@ -109,12 +116,15 @@ def login_view(request):
                 msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
-            p
-    contactform = ContactForm()
+
+    contactform = ContactForm(request=request)
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg, "contactform": contactform})
 
+
 from django.contrib.auth.models import User
+
+
 def register_user(request):
     msg = None
     success = False
@@ -129,11 +139,10 @@ def register_user(request):
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
 
-
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
 
-            #return redirect("/login/")
+            # return redirect("/login/")
 
         else:
 

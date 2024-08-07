@@ -205,7 +205,7 @@ class ProfileView(View):
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        contactform = ContactForm(request.POST, user=request.user)
+        contactform = ContactForm(request.POST,request = request)
 
         context = {'contactform':contactform,'profile': self.profile,'profileform' :ProfileForm(instance=request.user.profile), 'segment': 'profile'}
 

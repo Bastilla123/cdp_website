@@ -103,21 +103,23 @@
     $('#contact-form').on('submit', function(event) {
 
       event.preventDefault();
+
       $.ajax({
         url: '{% url "contact" %}',
         type: 'POST',
         data: $(this).serialize(),
         dataType: 'json',
         success: function(response) {
-          if (response.success) {
+alert("Success")
 
             $('#contact-form').hide();
-            $('#alert').html('<div class="alert alert-success">Danke für dei Nachricht!</div>').show();
-          } else {
-
+            $('#alert').html('<div class="alert alert-success">Danke für die Nachricht!</div>').show();
+          },
+           error: function (response) {
+            console.log(response)
             $('#alert').html('<div class="alert alert-danger">' + response.errors + '</div>').show();
           }
-        }
+
       });
     });
   });

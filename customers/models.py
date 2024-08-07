@@ -4,7 +4,7 @@ from django.utils.translation import gettext as _
 
 
 class Contact(models.Model):
-    email = models.EmailField()
+    email = models.CharField(max_length=255)
     subject = models.CharField(max_length=255)
     message = models.TextField()
     first_name = models.CharField(max_length=255)

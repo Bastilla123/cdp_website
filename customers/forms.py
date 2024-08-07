@@ -22,9 +22,12 @@ class ContactForm(ModelForm):
 
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+
+        self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
-        if self.user:
+
+        if self.request.user.is_authenticated:
+
             self.fields.pop('email')
             self.fields.pop('first_name')
             self.fields.pop('last_name')
