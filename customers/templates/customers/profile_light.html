@@ -1,282 +1,272 @@
-{% extends base_template %}
+{% extends 'energy/energy_base_template.html' %}
 {% load static %}
 {% load i18n %}
 {% block title %} Settings {% endblock %}
 
-    <!-- Specific Page CSS goes HERE  -->
-    {% block stylesheets %}
+<!-- Specific Page CSS goes HERE  -->
+{% block extrastyle %}
+
 <style>
-    body{margin-top:20px;
-    color: #9b9ca1;
-    }
-    .bg-secondary-soft {
-        background-color: rgba(208, 212, 217, 0.1) !important;
-    }
-    .rounded {
-        border-radius: 5px !important;
-    }
-    .py-5 {
-        padding-top: 3rem !important;
-        padding-bottom: 3rem !important;
-    }
-    .px-4 {
-        padding-right: 1.5rem !important;
-        padding-left: 1.5rem !important;
-    }
-    .file-upload .square {
-        height: 250px;
-        width: 250px;
-        margin: auto;
-        vertical-align: middle;
-        border: 1px solid #e5dfe4;
-        background-color: #fff;
-        border-radius: 5px;
-    }
-    .text-secondary {
-        --bs-text-opacity: 1;
-        color: rgba(208, 212, 217, 0.5) !important;
-    }
-    .btn-success-soft {
-        color: #28a745;
-        background-color: rgba(40, 167, 69, 0.1);
-    }
-    .btn-danger-soft {
-        color: #dc3545;
-        background-color: rgba(220, 53, 69, 0.1);
-    }
-    .form-control {
-        display: block;
-        width: 100%;
-        padding: 0.5rem 1rem;
-        font-size: 0.9375rem;
-        font-weight: 400;
-        line-height: 1.6;
-        color: #29292e;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #e5dfe4;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 5px;
-        -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-        transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    }
+    #content-body { color: #000; }
+    .img-account-profile {
+  height: 10rem;
+  width: 10rem;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+
+
 </style>
-{% endblock stylesheets %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-      integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
+{% endblock %}
+
 
 {% block content %}
 
-
-
-  <div class="">
-    <div class="row">
-
-
-        <div class="col-12">
-            <!-- Page title -->
-            <div class="my-5">
-                <h3>{% trans 'My Profile' %}</h3>
-                <hr>
-            </div>
-            <!-- Form START -->
-             <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+    <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-                <div class="row mb-5 gx-5">
-                    <!-- Contact detail -->
-                    <div class="col-xxl-8 mb-5 mb-xxl-0">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row g-3">
-                                <h4 class="mb-4 mt-0">{% trans 'Contact detail' %}</h4>
-                                <div class="col-md-6">
-
-                                    {{ profileform.gender.label }}
-                                    {{ profileform.gender }}
-                                </div>
-                                <!-- First Name -->
-                                <div class="col-md-6">
-
-                                    {{ profileform.first_name.label }}
-                                    {{ profileform.first_name }}
-                                </div>
-                                <!-- Last name -->
-                                <div class="col-md-6">
-                                    {{ profileform.last_name.label }}
-                                    {{ profileform.last_name }}
-
-                                </div>
-                                <!-- Phone number -->
-                                <div class="col-md-6">
-                                    {{ profileform.phone.label }}
-                                    {{ profileform.phone }}
-
-                                </div>
-                                <!-- Mobile number -->
-                                <div class="col-md-6">
-                                    {{ profileform.mobile_number.label }}
-                                    {{ profileform.mobile_number }}
-                                </div>
-                                <!-- Email -->
-                                <div class="col-md-6">
-                                    {{ profileform.email.label }}
-                                    {{ profileform.email }}
-
-                                </div>
-                                <!-- Skype -->
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.skype.label }}
-                                    {{ profileform.skype }}
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.birthday.label }}
-                                    {{ profileform.birthday }}
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.address.label }}
-                                    {{ profileform.address }}
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.number.label }}
-                                    {{ profileform.number }}
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.zip.label }}
-                                    {{ profileform.zip }}
-                                </div>
-                                <div class="col-md-6">
-
-
-                                    {{ profileform.city.label }}
-                                    {{ profileform.city }}
-                                </div>
-                            </div> <!-- Row END -->
-                        </div>
-                    </div>
-                    <!-- Upload profile -->
-                    <div class="col-xxl-4">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row g-3">
-                                <h4 class="mb-4 mt-0">{% trans 'Upload your profile photo' %}</h4>
-                                <div class="text-center">
-                                    <!-- Image upload -->
-                                    <div class="square position-relative display-2 mb-3">
-
-                                        {% if user.profile.image %}
-                                        <img class="w-8 h-8 md:h-auto rounded-full mx-auto"
-                             src="{{ user.profile.image.url }}">
-                                        {% else %}
-                                        <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
-                                        {% endif %}
-                                    </div>
-                                    <!-- Button -->
-
-
-
-
-
-
-
-        {{ profileform.image }}
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- Row END -->
-
-                <!-- Social media detail -->
-                <div class="row mb-5 gx-5">
-                    <div class="col-xxl-6 mb-5 mb-xxl-0">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row">
-                                <h4 >{% trans 'Social media detail' %}</h4>
-                                <!-- Facebook -->
-                                <div class="col-md-6">
-
-
-                                    <label class="form-label"><i class="fab fa-fw fa-facebook me-2 text-facebook"></i>Facebook
-                                        *</label>
-                                    {{ profileform.facebook }}
-                                </div>
-                                <!-- Twitter -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-twitter text-twitter me-2"></i>Twitter
-                                        *</label>
-                                    {{ profileform.twitter }}
-                                </div>
-                                <!-- Linkedin -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i
-                                            class="fab fa-fw fa-linkedin-in text-linkedin me-2"></i>Linkedin *</label>
-                                    {{ profileform.linkedin }}
-                                </div>
-                                <!-- Instragram -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-instagram text-instagram me-2"></i>Instagram
-                                        *</label>
-                                    {{ profileform.instagram }}
-                                </div>
-                                <!-- Dribble -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i
-                                            class="fas fa-fw fa-basketball-ball text-dribbble me-2"></i>Dribble
-                                        *</label>
-                                    {{ profileform.dribble }}
-                                </div>
-                                <!-- Pinterest -->
-                                <div class="col-md-6">
-                                    <label class="form-label"><i class="fab fa-fw fa-pinterest text-pinterest"></i>Pinterest
-                                        *</label>
-                                    {{ profileform.pinterest }}
-                                </div>
-                            </div> <!-- Row END -->
-                        </div>
-                    </div>
-
-                    <!-- change password -->
-                    <div class="col-xxl-6">
-                        <div class="bg-secondary-soft px-4 py-5 rounded">
-                            <div class="row">
-                                <h4 class="my-4">{% trans 'Change Password' %}</h4>
-
-                                <!-- New password -->
-                                <div class="col-md-12">
-                                    <label for="exampleInputPassword2"  class="form-label">{% trans 'New password' %} *</label>
-                                    <input type="password" class="form-control" name="passwort_1" id="exampleInputPassword2">
-                                </div>
-                                <!-- Confirm password -->
-                                <div class="col-md-12">
-                                    <label for="exampleInputPassword3"  class="form-label">{% trans 'Confirm Password' %} *</label>
-                                    <input type="password" class="form-control" name="passwort_2" id="exampleInputPassword3">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- Row END -->
-                <!-- button -->
-                <div class="gap-3 d-md-flex justify-content-md-end text-center">
-
-                    <button type="submit" class="btn btn-primary btn-lg">{% trans 'Update profile' %}</button>
-                </div>
-            </form> <!-- Form END -->
+        <div class="row">
+            <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'My Profile' %}</h2></div>
         </div>
+        <div class="row mt-3 db-chart">
+
+            <div class="col-12">
+
+                <hr class="mt-0 mb-4">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <!-- Profile picture card-->
+                        <div class="card mb-4 mb-xl-0">
+                            <div class="card-header">Profile Picture</div>
+                            <div class="card-body text-center">
+                                {% if user.profile.image %}
+                                <!-- Profile picture image-->
+                                <img class="img-account-profile rounded-circle mb-2"
+                                     src="{{ user.profile.image.url }}" alt="">
+                                {% else %}
+                                <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+                                {% endif %}
+                                <!-- Profile picture help block-->
+                                <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                                <!-- Profile picture upload button-->
+                                {{ profileform.image }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-header">{% trans 'Account Details' %}</div>
+                            <div class="card-body">
+
+
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.first_name.label }}</label>
+                                        {{ profileform.first_name }}
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.last_name.label }}</label>
+                                        {{ profileform.last_name }}
+                                    </div>
+                                </div>
+                                <!-- Form Row        -->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (organization name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.address.label }}</label>
+                                        {{ profileform.address }}
+                                    </div>
+                                    <!-- Form Group (location)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1"> {{ profileform.number.label }}</label>
+                                        {{ profileform.number }}
+                                    </div>
+                                </div>
+
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (organization name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.zip.label }}</label>
+                                        {{ profileform.zip }}
+                                    </div>
+                                    <!-- Form Group (location)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1"> {{ profileform.city.label }}</label>
+                                        {{ profileform.city }}
+                                    </div>
+                                </div>
+
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (phone number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.email.label }}</label>
+                                        {{ profileform.email }}
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.gender.label }}</label>
+                                        {{ profileform.gender }}
+                                    </div>
+                                </div>
+
+
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (phone number)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.mobile_number.label }}</label>
+                                        {{ profileform.mobile_number }}
+                                    </div>
+                                    <!-- Form Group (birthday)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.phone.label }}</label>
+                                        {{ profileform.phone }}
+                                    </div>
+                                </div>
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.skype.label }}</label>
+                                        {{ profileform.skype }}
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1">{{ profileform.birthday.label }}</label>
+                                        {{ profileform.birthday }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xl-4">
+
+                    </div>
+                    <div class="col-xl-8">
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-header">{% trans 'Social Media' %}</div>
+                            <div class="card-body">
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i
+                                                class="fab fa-fw fa-facebook me-2 text-facebook"></i>Facebook
+                                        </label>
+                                        {{ profileform.facebook }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i class="fab fa-fw fa-twitter text-twitter me-2"></i>Twitter
+                                        </label>
+                                        {{ profileform.twitter }}
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i
+                                                class="fab fa-fw fa-linkedin-in text-linkedin me-2"></i>Linkedin
+                                        </label>
+                                        {{ profileform.linkedin }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i
+                                                class="fab fa-fw fa-instagram text-instagram me-2"></i>Instagram
+                                        </label>
+                                        {{ profileform.instagram }}
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i
+                                                class="fas fa-fw fa-basketball-ball text-dribbble me-2"></i>Dribble
+                                            *</label>
+                                        {{ profileform.dribble }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"><i class="fab fa-fw fa-pinterest text-pinterest"></i>Pinterest
+                                            *</label>
+                                        {{ profileform.pinterest }}
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xl-4">
+
+                    </div>
+                    <div class="col-xl-8">
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-header">{% trans 'Change Password' %}</div>
+                            <div class="card-body">
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPassword2" class="form-label">{% trans 'New password' %}
+                                        </label>
+                                        <input type="password" class="form-control" name="passwort_1"
+                                               id="exampleInputPassword2">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPassword3" class="form-label">{% trans 'Confirm  Password' %}
+                                        </label>
+                                        <input type="password" class="form-control" name="passwort_2"
+                                               id="exampleInputPassword3">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-4">
+
+                    </div>
+                    <div class="col-xl-8">
+                    <div class="card mb-4">
+
+                            <div class="card-body">
+                                <button class="btn btn-primary" type="submit">{% trans 'Save changes' %}</button>
+                                </div>
+                        </div>
+                        </div>
+    </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 
 {% endblock %}

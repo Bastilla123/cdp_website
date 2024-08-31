@@ -1,0 +1,156 @@
+
+{% extends "order_home.html" %}
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+.gradient-custom {
+/* fallback for old browsers */
+background: #6a11cb;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+</style>
+{% endblock %}
+{% block content %}
+
+
+
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Adresse</h5>
+          </div>
+          <div class="card-body">
+            <!-- Single item -->
+            <div class="row">
+              <div >
+                  <div>
+Vorname: {{context.firstname}}
+                      </div>
+                  <div>
+                  Nachname: {{context.lastname}}
+                      </div>
+                  <div>
+                  Straße: {{context.street}}
+                      </div>
+                      <div>
+                  PLZ: {{context.zip}}
+                          </div>
+                          <div>
+                  Stadt: {{context.city}}
+                              </div>
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+          <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Product Data</h5>
+          </div>
+          <div class="card-body">
+            <!-- Single item -->
+            <div class="row">
+              <div >
+Geschätzter Verbrauch: {{context.expected_consumption}}
+                  </div>
+                  <div >
+                  Produkttitel: {{context.products.title}}
+              </div>
+<div >
+                  Produktsubtitel: {{context.products.subtitle}}
+              </div>
+                <div >
+                  Produktbeschreibung: {{context.products.description}}
+              </div>
+                <div >
+                  Arbeitspreis: {{context.products.arbeitspreis}}
+              </div>
+                <div >
+                  Basisspreis: {{context.products.basisprice}}
+              </div>
+                <div >
+                  Vertragslaufzeit: {{context.products.vertragslaufzeit}}
+              </div>
+                <div >
+                  Kündigungsfrist: {{context.products.kuendigungsfrist}}
+              </div>
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+          <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Consent</h5>
+          </div>
+          <div class="card-body">
+            <!-- Single item -->
+            <div class="row">
+              <div >
+{% for key, value in context.items %}
+
+                  {% if '_url' in key %}
+                  <div>
+                  <a target="_blank" href="{{value}}" download="proposed_file_name">Download {{key}}</a>
+                  </div>
+                  {% endif %}
+                  {% if '_boolean' in key %}
+                  <div>
+{{key}}: {% if value == '1' %} <i class="fa-solid fa-check" style="color:green"></i>
+                      {% else %}
+                      <i class="fa-solid fa-x" style="color:red"></i>
+                      {% endif %}
+                      </div>
+                  {% endif %}
+
+{% endfor %}
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body">
+
+        <form method="POST" action="/execute_order/">
+            {% csrf_token %}
+            <input type="hidden" name="order_context" value="{{json}}" >
+
+            <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">
+              Accept Contract
+            </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

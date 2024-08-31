@@ -1,0 +1,591 @@
+{% extends 'energy/energy_base_template.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+    <div class="row">
+                        <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Energy Dashboard' %}</h2></div>
+                    </div>
+<div class="row mt-3 db-chart">
+    <div id="parent1" class="chart1-co col-lg-12 col-xl-12">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text1">Cost</div>
+            <div id="chart1" class="chart">
+                <div data-reactroot="">
+
+                    <br>
+                    <div>
+                        <div class="col-lg-12">
+                            <div id="cost-elements" class="row card-group pt-3 pb-5">
+                                <div class="text-center col-lg-3 col-md-6 col-sm-6 mb-4">
+                                    <div class="card-block"><h4 id="co-tablecell-title1" class="kpi-title">July</h4>
+                                        <div id="co-tablecell-value1" class="kpi-content">€203</div>
+                                    </div>
+                                </div>
+                                <div class="text-center col-lg-3 col-md-6 col-sm-6 mb-4">
+                                    <div class="card-block"><h4 id="co-tablecell-title2" class="kpi-title">{% trans 'So Far This Month' %}</h4>
+                                        <div id="co-tablecell-value2" class="kpi-content">€206.4</div>
+                                    </div>
+                                </div>
+                                <div class="text-center col-lg-3 col-md-6 col-sm-6 mb-4">
+                                    <div class="card-block"><h4 id="co-tablecell-title3" class="kpi-title">{% trans 'Predicted This Month' %}</h4>
+                                        <div id="co-tablecell-value3" class="kpi-content">€214</div>
+                                    </div>
+                                </div>
+                                <div class="text-center col-lg-3 col-md-6 col-sm-6 mb-4">
+                                    <div class="card-block"><h4 id="co-tablecell-title4" class="kpi-title"
+                                                                style="display: block;">{% trans 'Estimated savings' %}</h4>
+                                        <div id="co-tablecell-value4" class="kpi-content" style="display: block;">€11
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="co-chart-container" class="pt-3 pb-3 pr-5 pl-5">
+                        <div data-reactroot="" class="fc-column2d" id="dd011af7-2555-4344-881c-b9fed73e4c05"><span
+                                id="mychart8"
+                                style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 500px;"
+                                class="fusioncharts-container"><svg height="500" version="1.1" width="1401"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.0999756px; background-color: rgb(255, 255, 255);"
+                                                                    id="raphael-paper-1888"><desc></desc><defs><clipPath
+                                id="rr-29A33E7E-80E0-4F20-929D-9BB7E68AB7DE"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-23035484-02E0-4D83-86D5-62DAF29484D6"><rect x="29" y="15" width="1373.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-0A7F330E-E783-412E-8578-88526EA17F0A"><rect x="29" y="15" width="1373.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-64E552D2-72DB-4F2A-89E3-764940A3741D"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-122D2D15-5F73-469C-A048-EBF9EC7CFCE1"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-846EE66B-0C06-4A24-BE6D-E5C0CB16BE06"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-4BC54DF6-E6EC-40A9-8D47-ABDC042F5DA2"><rect x="30.5" y="13.5" width="1370.5"
+                                                                                   height="375"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-574AFE35-5311-4C36-9943-8238691D3F12"><rect x="30.5" y="13.5" width="1370.5"
+                                                                                   height="375"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-B2B31296-2EF1-4F85-961E-E3D02966E65D"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-658C6CA4-97ED-42EC-AC69-3C1B2F2725CF"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-58DE7FB8-E50C-47CC-B6EA-F3FECD798D23"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-F803C875-6F39-43AD-93B7-FCF3E72296D4"><rect x="30.5" y="15" width="1370.5"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-264746F5-CA22-4938-A79B-C0B9B87791AE"><rect x="30.5" y="0" width="1370.5"
+                                                                                   height="500"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-C9469280-B24C-4ABC-9CF2-33E97C84E555"><rect x="30.5" y="15"
+                                                                                   width="2360.3055555555557"
+                                                                                   height="372"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath><clipPath
+                                id="rr-804FA703-0395-402D-AE43-E03DC617A8AE"><rect x="30.5" y="0" width="1370.5"
+                                                                                   height="387"
+                                                                                   transform="matrix(1,0,0,1,0,0)"></rect></clipPath></defs><text
+                                x="-100" y="-100">abcdefhiklmnopqrstuvwxyz</text><g
+                                class="raphael-group-1889-messageGroup"><text
+                                style="font-family: Verdana, sans; font-size: 10px; fill: rgb(102, 102, 102); stroke: none; text-anchor: middle; display: none;"
+                                x="700.5" y="250" font-family="Verdana,sans" font-size="10px" fill="#666666"
+                                stroke="none" text-anchor="middle"><tspan dy="4.5"
+                                                                          x="700.5">Loading chart. Please wait.</tspan></text></g><rect
+                                style="fill: none; stroke: rgb(0, 0, 0); display: none;" x="100" y="0" width="10"
+                                height="30" rx="0" ry="0" fill="none" stroke="#000000"></rect><text x="-100" y="-100">abcdefhiklmnopqrstuvwxyz</text><g
+                                class="raphael-group-1893-parentgroup"><g class="raphael-group-1894-background"><rect
+                                style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0" width="1401"
+                                height="500" stroke="none" fill-opacity="0" fill="#1d1b41" rx="0" ry="0"></rect><rect
+                                style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0" y="0"
+                                width="1401" height="500" stroke="#767575" stroke-opacity="0.5" stroke-width="0"
+                                stroke-dasharray="none" fill="none" rx="0" ry="0"></rect></g><g
+                                class="raphael-group-1895-canvas"><rect
+                                style="stroke: none; fill-opacity: 0; fill: rgb(255, 255, 255);" x="30.5" y="15"
+                                width="1370.5" height="372" rx="0" ry="0" stroke-width="0" stroke="none"
+                                fill-opacity="0" fill="#ffffff"></rect></g><g class="raphael-group-1896-axisbottom"><g
+                                class="raphael-group-1924-dataset-Band-group"><g
+                                class="raphael-group-1937-dataset-axis-bands" style=""
+                                clip-path="url('#rr-29A33E7E-80E0-4F20-929D-9BB7E68AB7DE')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1968-dataset-axis-bands" style=""
+                                clip-path="url('#rr-846EE66B-0C06-4A24-BE6D-E5C0CB16BE06')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g></g><g
+                                class="raphael-group-1925-dataset-Line-group"><g
+                                class="raphael-group-1938-dataset-axis-lines" style=""
+                                clip-path="url('#rr-23035484-02E0-4D83-86D5-62DAF29484D6')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1969-dataset-axis-lines" style=""
+                                clip-path="url('#rr-4BC54DF6-E6EC-40A9-8D47-ABDC042F5DA2')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,387.5L1401,387.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,312.5L1401,312.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,238.5L1401,238.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,163.5L1401,163.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,89.5L1401,89.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path><path
+                                style="stroke: rgb(65, 71, 97); stroke-opacity: 1; fill: none; stroke-linecap: round; shape-rendering: crispedges;"
+                                stroke="#414761" stroke-opacity="1" stroke-width="1.5" stroke-dasharray="1.5,3.5"
+                                d="M30.5,15.5L1401,15.5" fill="none" stroke-linecap="round"
+                                shape-rendering="crispEdges"></path></g></g><g
+                                class="raphael-group-1926-dataset-Trend-group-bottom"><g
+                                class="raphael-group-1941-dataset-axis-trend-bottom" style=""
+                                clip-path="url('#rr-122D2D15-5F73-469C-A048-EBF9EC7CFCE1')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1972-dataset-axis-trend-bottom" style=""
+                                clip-path="url('#rr-658C6CA4-97ED-42EC-AC69-3C1B2F2725CF')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g></g><g
+                                class="raphael-group-1928-dataset-Name-group"><g
+                                class="raphael-group-1943-dataset-axis-name"></g><g
+                                class="raphael-group-1974-dataset-axis-name"
+                                style="font-family: Nunito Sans; font-size: 14px; font-weight: normal; font-style: normal;"
+                                font-family="Nunito Sans" font-size="14px" font-weight="normal" font-style="normal"><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25" y="387"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan dy="5"
+                                                                                                      x="25">€0</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25" y="312.6"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan dy="5"
+                                                                                                      x="25">€2</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25" y="238.2"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan dy="5"
+                                                                                                      x="25">€4</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25"
+                                y="163.79999999999998" transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan
+                                dy="5" x="25">€6</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25"
+                                y="89.39999999999998" transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan
+                                dy="5" x="25">€8</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); font-size: 14px; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" font-size="14px" text-anchor="end" x="25" y="15"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1" stroke="none"><tspan dy="5"
+                                                                                                      x="25">€10</tspan></text></g></g><g
+                                class="raphael-group-1931-dataset-Label-group"><g
+                                class="raphael-group-1933-dataset-axis"
+                                style="font-family: Nunito Sans; font-size: 14px; font-weight: normal; font-style: normal;"
+                                font-family="Nunito Sans" font-size="14px" font-weight="normal" font-style="normal"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="68.56944444444444" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,-331.9306,469.0694)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="68.56944444444444">Aug 1</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="144.70833333333331" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,-255.7917,545.2083)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="144.70833333333331">Aug 2</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="220.84722222222223" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,-179.6528,621.3472)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="220.84722222222223">Aug 3</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="296.9861111111111" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,-103.5139,697.4861)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="296.9861111111111">Aug 4</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="373.125" y="400.5" text-anchor="end"
+                                transform="matrix(0,-1,1,0,-27.375,773.625)" stroke-width="1" stroke="none"><tspan
+                                dy="5" x="373.125">Aug 5</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="449.26388888888886" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,48.7639,849.7639)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="449.26388888888886">Aug 6</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="525.4027777777778" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,124.9028,925.9028)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="525.4027777777778">Aug 7</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="601.5416666666666" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,201.0417,1002.0417)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="601.5416666666666">Aug 8</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="677.6805555555555" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,277.1806,1078.1806)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="677.6805555555555">Aug 9</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="753.8194444444445" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,353.3194,1154.3194)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="753.8194444444445">Aug 10</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="829.9583333333333" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,429.4583,1230.4583)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="829.9583333333333">Aug 11</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="906.0972222222222" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,505.5972,1306.5972)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="906.0972222222222">Aug 12</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="982.2361111111111" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,581.7361,1382.7361)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="982.2361111111111">Aug 13</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="1058.375" y="400.5" text-anchor="end"
+                                transform="matrix(0,-1,1,0,657.875,1458.875)" stroke-width="1" stroke="none"><tspan
+                                dy="5" x="1058.375">Aug 14</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="1134.513888888889" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,734.0139,1535.0139)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="1134.513888888889">Aug 15</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="1210.6527777777778" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,810.1528,1611.1528)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="1210.6527777777778">Aug 16</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="1286.7916666666665" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,886.2917,1687.2917)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="1286.7916666666665">Aug 17</tspan></text><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); opacity: 1; text-anchor: end; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" opacity="1" x="1362.9305555555554" y="400.5"
+                                text-anchor="end" transform="matrix(0,-1,1,0,962.4306,1763.4306)" stroke-width="1"
+                                stroke="none"><tspan dy="5" x="1362.9305555555554">Aug 18</tspan></text></g><g
+                                class="raphael-group-1964-dataset-axis" transform="matrix(1,0,0,1,0,0)" style=""
+                                stroke-width="1"></g></g><g class="raphael-group-1944-axis-line-tick-bottom"><path
+                                style="stroke-linecap: butt; stroke: rgb(144, 146, 164); stroke-opacity: 1; fill: none;"
+                                d="M29,387.5L1401,387.5" stroke-linecap="butt" stroke="#9092a4" stroke-opacity="1"
+                                stroke-width="1.5" fill="none"></path></g><g
+                                class="raphael-group-1975-axis-line-tick-bottom"><path
+                                style="stroke-linecap: butt; stroke: rgb(144, 146, 164); stroke-opacity: 1; fill: none;"
+                                d="M29.5,387L29.5,15" stroke-linecap="butt" stroke="#9092a4" stroke-opacity="1"
+                                stroke-width="1.5" fill="none"></path></g></g><g class="raphael-group-1897-dataset"
+                                                                                 style=""
+                                                                                 clip-path="url('#rr-58DE7FB8-E50C-47CC-B6EA-F3FECD798D23')"
+                                                                                 transform="matrix(1,0,0,1,0,0)"
+                                                                                 stroke-width="1"><g
+                                class="raphael-group-1903-columnTrendGroup"></g><g class="raphael-group-1904-column"
+                                                                                   style=""
+                                                                                   clip-path="url('#rr-C9469280-B24C-4ABC-9CF2-33E97C84E555')"><g
+                                class="raphael-group-2011-shadow"></g><g class="raphael-group-1990-shadow"></g><g
+                                class="raphael-group-1989-columns"><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="195.5" y="208.5" width="50" height="179" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="271.5" y="234.5" width="50" height="153" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="348.5" y="204.5" width="50" height="183" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="424.5" y="212.5" width="50" height="175" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="500.5" y="208.5" width="50" height="179" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="576.5" y="238.5" width="50" height="149" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="652.5" y="204.5" width="50" height="183" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="728.5" y="238.5" width="50" height="149" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="804.5" y="208.5" width="50" height="179" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="881.5" y="227.5" width="50" height="160" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="957.5" y="230.5" width="50" height="157" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1033.5" y="234.5" width="50" height="153" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1109.5" y="204.5" width="50" height="183" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1185.5" y="238.5" width="50" height="149" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1261.5" y="204.5" width="50" height="183" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1337.5" y="238.5" width="50" height="149" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1414.5" y="223.5" width="50" height="164" rx="0" ry="0" fill-opacity="1"
+                                fill="#48dfba" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter; display: none;"
+                                x="1337.5" y="387" width="50" height="1" rx="0" ry="0" fill-opacity="1" fill="#48dfba"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter; display: none;"
+                                x="1414.5" y="387" width="50" height="1" rx="0" ry="0" fill-opacity="1" fill="#48dfba"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); fill-opacity: 1; stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="43.5" y="204.5" width="50" height="183" rx="0" ry="0" fill="#48dfba" stroke="#333333"
+                                fill-opacity="1" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill: rgb(72, 223, 186); stroke: rgb(51, 51, 51); fill-opacity: 1; stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="119.5" y="230.5" width="50" height="157" rx="0" ry="0" fill="#48dfba"
+                                stroke="#333333" fill-opacity="1" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect></g><g
+                                class="raphael-group-2010-columns"><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="195.5" y="134.5" width="50" height="74" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="271.5" y="126.5" width="50" height="108" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="348.5" y="130.5" width="50" height="74" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="424.5" y="130.5" width="50" height="82" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="500.5" y="104.5" width="50" height="104" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="576.5" y="141.5" width="50" height="97" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="652.5" y="104.5" width="50" height="100" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="728.5" y="163.5" width="50" height="75" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="804.5" y="119.5" width="50" height="89" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="881.5" y="152.5" width="50" height="75" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="957.5" y="122.5" width="50" height="108" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1033.5" y="122.5" width="50" height="112" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1109.5" y="93.5" width="50" height="111" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1185.5" y="163.5" width="50" height="75" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1261.5" y="96.5" width="50" height="108" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1337.5" y="141.5" width="50" height="97" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="1414.5" y="145.5" width="50" height="78" rx="0" ry="0" fill-opacity="1"
+                                fill="#f7e332" stroke="#333333" stroke-opacity="1" stroke-width="0"
+                                stroke-dasharray="none" stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter; display: none;"
+                                x="1337.5" y="387" width="50" height="1" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill-opacity: 1; fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); stroke-opacity: 1; stroke-linejoin: miter; display: none;"
+                                x="1414.5" y="387" width="50" height="1" rx="0" ry="0" fill-opacity="1" fill="#f7e332"
+                                stroke="#333333" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); fill-opacity: 1; stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="43.5" y="126.5" width="50" height="78" rx="0" ry="0" fill="#f7e332" stroke="#333333"
+                                fill-opacity="1" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect><rect
+                                style="fill: rgb(247, 227, 50); stroke: rgb(51, 51, 51); fill-opacity: 1; stroke-opacity: 1; stroke-linejoin: miter;"
+                                x="119.5" y="148.5" width="50" height="82" rx="0" ry="0" fill="#f7e332" stroke="#333333"
+                                fill-opacity="1" stroke-opacity="1" stroke-width="0" stroke-dasharray="none"
+                                stroke-linejoin="miter"></rect></g></g><g class="raphael-group-1905-area"></g><g
+                                class="raphael-group-1906-line"></g><g class="raphael-group-2044-columnTrendGroup"></g></g><g
+                                class="raphael-group-1898-axistop"><g class="raphael-group-1927-dataset-Line-group-top"><g
+                                class="raphael-group-1939-dataset-axis-lines-top" style=""
+                                clip-path="url('#rr-0A7F330E-E783-412E-8578-88526EA17F0A')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1970-dataset-axis-lines-top" style=""
+                                clip-path="url('#rr-574AFE35-5311-4C36-9943-8238691D3F12')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g></g><g
+                                class="raphael-group-1929-axis-Line-group"><g
+                                class="raphael-group-1935-axis-line-tick"></g><g
+                                class="raphael-group-1936-axis-vline-label" transform="matrix(1,0,0,1,0,0)" style=""
+                                stroke-width="1"></g><g class="raphael-group-1966-axis-line-tick"></g><g
+                                class="raphael-group-1967-axis-vline-label" transform="matrix(1,0,0,1,0,0)" style=""
+                                stroke-width="1"></g></g><g class="raphael-group-1930-dataset-Trend-group-top"><g
+                                class="raphael-group-1940-dataset-axis-trend-top" style=""
+                                clip-path="url('#rr-64E552D2-72DB-4F2A-89E3-764940A3741D')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1942-dataset-axis-trend-label"></g><g
+                                class="raphael-group-1971-dataset-axis-trend-top" style=""
+                                clip-path="url('#rr-B2B31296-2EF1-4F85-961E-E3D02966E65D')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-1973-dataset-axis-trend-label"></g></g><g
+                                class="raphael-group-1932-dataset-Label-group"><g
+                                class="raphael-group-1934-dataset-top-label" transform="matrix(1,0,0,1,0,0)" style=""
+                                stroke-width="1"></g><g class="raphael-group-1965-dataset-top-label"
+                                                        transform="matrix(1,0,0,1,0,0)" style=""
+                                                        stroke-width="1"></g></g></g><g
+                                class="raphael-group-1899-sumlabels" style="display: none;"
+                                clip-path="url('#rr-264746F5-CA22-4938-A79B-C0B9B87791AE')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g><g
+                                class="raphael-group-2031-scrollBarParentGroup"><g class="raphael-group-2032-scroller"
+                                                                                   style=""><rect
+                                style="fill: rgb(253, 253, 253); stroke: rgb(189, 189, 189); stroke-opacity: 1; fill-opacity: 1;"
+                                x="31.5" y="387.5" width="1369" height="7" rx="0" ry="0" fill="#fdfdfd" stroke="#bdbdbd"
+                                stroke-opacity="1" fill-opacity="1"></rect><rect
+                                style="fill: rgb(151, 151, 151); stroke: rgb(151, 151, 151); stroke-opacity: 1; fill-opacity: 1;"
+                                x="31.5" y="387.5" width="795" height="7" rx="0" ry="0" fill="#979797" stroke="#979797"
+                                stroke-width="1" stroke-opacity="1" fill-opacity="1"></rect></g></g><g
+                                class="raphael-group-1900-datalabel"
+                                style="font-family: Nunito Sans; font-size: 14px; font-weight: normal; font-style: normal;"
+                                font-family="Nunito Sans" font-size="14px" font-weight="normal" font-style="normal"
+                                clip-path="url('#rr-804FA703-0395-402D-AE43-E03DC617A8AE')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"><g
+                                class="raphael-group-2045-datalabel"></g><g
+                                class="raphael-group-2046-datalabel"></g></g><g class="raphael-group-1901-legend"
+                                                                                transform="matrix(1,0,0,1,636.5,456.5)"
+                                                                                style="" stroke-width="1"><rect
+                                style="stroke: rgb(84, 84, 84); stroke-opacity: 0; fill-opacity: 0; fill: rgb(255, 255, 255);"
+                                x="0" y="0" width="158" height="29" rx="0" ry="0" stroke="#545454" stroke-opacity="0"
+                                stroke-width="1" fill-opacity="0" fill="#ffffff"></rect><g
+                                class="raphael-group-1917-item"
+                                style="font-family: Nunito Sans; font-size: 14px; font-weight: normal;"
+                                font-family="Nunito Sans" font-size="14px" font-weight="normal"><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); text-anchor: start; cursor: pointer; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" text-anchor="start" x="27" y="6" stroke="none"><tspan
+                                dy="16" x="27">{% trans 'Electricity' %}</tspan></text><path
+                                style="fill: rgb(72, 223, 186); stroke: rgb(145, 236, 214); stroke-linecap: round; cursor: pointer; stroke-opacity: 1; fill-opacity: 1;"
+                                d="M19.803300858899107,9.196699141100893L9.196699141100893,9.196699141100893L9.196699141100893,19.803300858899107L19.803300858899107,19.803300858899107Z"
+                                fill="#48dfba" stroke="#91ecd6" stroke-linecap="round" stroke-opacity="1"
+                                fill-opacity="1" stroke-width="1"></path><rect
+                                style="fill: rgb(255, 0, 0); stroke: none; fill-opacity: 0.000001; cursor: pointer;"
+                                x="4" y="4" width="87" height="21" rx="0" ry="0" fill="#ff0000" stroke="none"
+                                fill-opacity="0.000001" stroke-width="1"></rect><text
+                                style="fill-opacity: 1; fill: rgb(253, 253, 253); text-anchor: start; cursor: pointer; stroke: none;"
+                                fill-opacity="1" fill="#fdfdfd" text-anchor="start" x="125.05" y="6" stroke="none"><tspan
+                                dy="16" x="125.05">{% trans 'Gas' %}</tspan></text><path
+                                style="fill: rgb(247, 227, 50); stroke: rgb(250, 238, 132); stroke-linecap: round; cursor: pointer; stroke-opacity: 1; fill-opacity: 1;"
+                                d="M117.8533008588991,9.196699141100893L107.24669914110089,9.196699141100893L107.24669914110089,19.803300858899107L117.8533008588991,19.803300858899107Z"
+                                fill="#f7e332" stroke="#faee84" stroke-linecap="round" stroke-opacity="1"
+                                fill-opacity="1" stroke-width="1"></path><rect
+                                style="fill: rgb(255, 0, 0); stroke: none; fill-opacity: 0.000001; cursor: pointer;"
+                                x="102.05" y="4" width="50" height="21" rx="0" ry="0" fill="#ff0000" stroke="none"
+                                fill-opacity="0.000001" stroke-width="1"></rect></g></g><g
+                                class="raphael-group-1907-tracker" style=""
+                                clip-path="url('#rr-F803C875-6F39-43AD-93B7-FCF3E72296D4')"
+                                transform="matrix(1,0,0,1,0,0)" stroke-width="1"></g></g><g
+                                class="raphael-group-1891-creditgroup"></g><g class="raphael-group-1908-buttons"></g><g
+                                class="raphael-group-1912-TB_MASTER2" style=""><rect
+                                style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0); fill-opacity: 0.000001; stroke-opacity: 0.000001;"
+                                x="1391" y="6" width="14" height="13" rx="0" ry="0" fill="#ff0000" stroke="#ff0000"
+                                fill-opacity="0.000001" stroke-opacity="0.000001" stroke-width="1"></rect><g
+                                class="raphael-group-1914-toolbar-group10" style=""><rect
+                                style="fill: rgb(255, 0, 0); stroke: rgb(255, 0, 0); fill-opacity: 0.000001; stroke-opacity: 0.000001;"
+                                x="1394" y="9" width="8" height="7" rx="1" ry="1" fill="#ff0000" stroke="#ff0000"
+                                fill-opacity="0.000001" stroke-opacity="0.000001" stroke-width="1"></rect></g></g><text
+                                style="stroke: none; fill: rgb(0, 0, 0); text-anchor: middle;" x="0" y="0" stroke="none"
+                                fill="#000000" text-anchor="middle"><tspan dy="4" x="0" xml:space="preserve"> </tspan></text><text
+                                style="stroke: none; fill: rgb(0, 0, 0); text-anchor: middle;" x="0" y="0" stroke="none"
+                                fill="#000000" text-anchor="middle"><tspan dy="4" x="0" xml:space="preserve"> </tspan></text><text
+                                style="stroke: none; fill: rgb(0, 0, 0); text-anchor: middle;" x="0" y="0" stroke="none"
+                                fill="#000000" text-anchor="middle"><tspan dy="4" x="0" xml:space="preserve"> </tspan></text><text
+                                style="stroke: none; fill: rgb(0, 0, 0); text-anchor: middle;" x="0" y="0" stroke="none"
+                                fill="#000000" text-anchor="middle"><tspan dy="4" x="0" xml:space="preserve"> </tspan></text></svg><div
+                                style="position: absolute; z-index: 50; top: 0px; right: auto; left: auto; overflow: hidden; background: rgb(255, 255, 255); border: 1px solid rgb(100, 100, 100); box-shadow: rgb(153, 153, 153) 2px 2px 5px; padding: 5px 3px; display: none;"></div></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="parent2" class="col-lg-6 col-xl-4" style="display: none; width: 0px; height: 0px;">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text2">CHANGE IN COST</div>
+            <div id="chart2" class="chart"></div>
+        </div>
+    </div>
+    <div id="parent3" class="col-lg-6 col-xl-4" style="display: none; width: 0px; height: 0px;">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text3">USAGE ESTIMATE</div>
+            <div id="chart3" class="chart"></div>
+        </div>
+    </div>
+    <div id="parent4" class="col-lg-6 col-xl-4" style="display: none; width: 0px; height: 0px;">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text4">ACTIVE APPLIANCES</div>
+            <div id="chart4" class="chart"></div>
+        </div>
+    </div>
+    <div id="parent5" class="col-lg-6 col-xl-4" style="display: none; width: 0px; height: 0px;">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text5">ENERGY INTENSITY</div>
+            <div id="chart5" class="chart"></div>
+        </div>
+    </div>
+    <div id="parent6" class="col-lg-6 col-xl-4" style="display: none; width: 0px; height: 0px;">
+        <div class="chart-card mb-4">
+            <div class="chart-title" id="text6">CARBON FOOTPRINT</div>
+            <div id="chart6" class="chart"></div>
+            <div id="chart7" class="chart"></div>
+        </div>
+    </div>
+</div>
+    </div>
+
+{% endblock %}

@@ -24,13 +24,15 @@
 
                         <div class="media-body ml-2 text-dark align-items-center d-none d-lg-block">
 
-                            <h4>{{ user.username }}</h4>
+
                           <span class="mb-0 font-small font-weight-bold">
                             {% if user.profile.image %}
                                         <img class="rounded-circle" style="width: 50px"
                              src="{{ user.profile.image.url }}">
                                         {% else %}
-                                        <i class="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary"></i>
+
+                              <i class="fa fa-5x fa-user-circle" aria-hidden="true"></i>
+
                                         {% endif %}
 
                           </span>

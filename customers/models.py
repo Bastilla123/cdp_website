@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
+def user_directory_path(instance, filename):
+
+    return 'customers/{0}/documents/{1}'.format(instance.user.id, filename)
+class UserDocument(models.Model):
+    user_link = models.ForeignKey(User, related_name="user_document", on_delete=models.CASCADE, blank=False, null=False)
+    filename = models.CharField(max_length=255,blank=False,null=False,default="")
+    document = models.FileField(upload_to=user_directory_path)
 
 class Contact(models.Model):
     email = models.CharField(max_length=255)
@@ -34,6 +41,7 @@ class Profile(models.Model):
     mobile_number = models.CharField(max_length=32, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     zip = models.CharField(max_length=30, null=True, blank=True)
+    iban = models.CharField(max_length=32, null=True, blank=True)
 
     skype = models.CharField(max_length=32, null=True, blank=True)
     facebook = models.CharField(max_length=32, null=True, blank=True)

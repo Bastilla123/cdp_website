@@ -1,0 +1,127 @@
+
+{% extends base_template %}
+{% load i18n %}
+
+{% block title %} Login {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %} bg-soft {% endblock body_class %}
+
+{% block content %}
+
+<div class="row">
+                <div class="col">
+                <div class="row justify-content-center form-bg-image" data-background="/static/assets/img/illustrations/signin.svg">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-3 my-lg-0 {% if base_template == 'layouts/base-fullscreen.html' %}bg-white {% endif %} shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">
+                                    Sign IN
+                                </h1>
+                                <br />
+                                <p>
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                        {% trans 'Add your credentials' %}
+                                    {% endif %}                                     
+                                </p>    
+                            </div>
+
+                            <form method="post" action="" class="mt-4">
+                                
+                                {% csrf_token %} 
+
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">{% trans 'Username' %}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"  id="basic-addon1" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %}><span class="fas fa-user-circle"></span></span>
+                                        {{ form.username }}
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="password">{% trans 'Your Password' %}</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" {% if base_template == 'layouts/base-dark.html' %} style="background-color: black" {% endif %} id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+                                            {{ form.password }}
+                                        </div>  
+                                    </div>
+                                    <!-- End of Form -->
+
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                                            <label class="form-check-label" for="defaultCheck5">
+                                              {% trans 'Remember me' %}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <a href="{% url 'register' %}" class="small text-right">{% trans 'Register' %}</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="submit" name="login" class="btn btn-block btn-primary">{% trans 'Sign IN' %}</button>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                <div class="col">
+<div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="signin-inner my-3 my-lg-0 {% if base_template == 'layouts/base-fullscreen.html' %} bg-white {% endif %} shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                    <form method="post" action="" id="contact-form" class="mt-4">
+
+                                {% csrf_token %}
+
+                        <h1>{% trans 'Contact us' %}</h1>
+                    {{ contactform }}
+                        <button type="submit" name="login" class="btn btn-block btn-primary">{% trans 'Send' %}</button>
+                            </form>
+                    <div id="alert" style="display:none;"></div>
+                </div>
+</div>
+                    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(function() {
+    $('#contact-form').on('submit', function(event) {
+
+      event.preventDefault();
+
+      $.ajax({
+        url: '{% url "contact" %}',
+        type: 'POST',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: function(response) {
+alert("Success")
+
+            $('#contact-form').hide();
+            $('#alert').html('<div class="alert alert-success">Danke für die Nachricht!</div>').show();
+          },
+           error: function (response) {
+            console.log(response)
+            $('#alert').html('<div class="alert alert-danger">' + response.errors + '</div>').show();
+          }
+
+      });
+    });
+  });
+</script>
+{% endblock javascripts %}

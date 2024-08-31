@@ -8,7 +8,7 @@ from django.conf import settings
 class ContactForm(ModelForm):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = ["first_name","last_name","street","zip","city","email","subject","message"]
         labels = {
             "first_name": _("Firstname"),
             "email": _("E-Mail"),
@@ -35,7 +35,7 @@ class ContactForm(ModelForm):
             self.fields.pop('zip')
             self.fields.pop('city')
 
-        self.fields.pop('user_link')
+        #self.fields.pop('user_link')
 
         for field in iter(self.fields):
             self.fields[field].widget.attrs.update({

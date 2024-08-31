@@ -7,5 +7,6 @@ urlpatterns = [
     path('profile', views.ProfileView.as_view(), name='profile'),
     path('api/profile/', APIProfileView.as_view()),
     path('api/profile', APIProfileView.as_view()),
+    path("contactus", contactus, name="contactus")
 
 ]

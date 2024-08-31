@@ -1,0 +1,264 @@
+{% load i18n %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Transform energy management with the Smart Energy Monitoring Dashboard, created using FusionCharts! Reduce costs while minimizing environmental impact!">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
+    <link href="https://www.fusioncharts.com/demos/dashboards/smart-energy-monitoring-dashboard/static/css/main.72e3962d.css" rel="stylesheet">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+{% block extrastyle %}
+    {% endblock %}
+
+</head>
+<body>
+
+{% include 'includes/navigation.html' %}
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root">
+    <div data-reactroot="">
+        {% include 'message.html' %}
+
+        <div class="container-fluid">
+
+            <div class="row flex-xl-nowrap">
+
+                <div id="nav" class="col-12 col-md-3 col-xl-2 bd-sidebar">
+
+                    <nav class="bd-links collapse" id="bd-docs-nav">
+                        <ul class="left-options">
+                            <li class="left-option active" id="Dashboard"><a
+                                    href="{% url 'dashboard' %}">{% trans 'Dashboard' %}</a></li>
+
+                            <li class="left-option" id="Cost"><a
+                                    href="{% url 'cost' %}">{% trans 'Cost' %}</a></li>
+
+                            <li class="left-option" id="Emissions"><a
+                                    href="{% url 'emissions' %}">{% trans 'Emissions' %}</a></li>
+                            <li class="left-option" id="Appliances"><a href="{% url 'profile' %}">{% trans 'Profiles' %}</a></li>
+                            <li class="left-option" id="Usage-by-rooms"><a href="{% url 'documents' %}">{% trans 'Documents' %}</a></li>
+                            <li class="left-option" id="Usage-by-rooms"><a href="{% url 'contactus' %}">{% trans 'Contact Us' %}</a></li>
+
+
+
+
+                        </ul>
+                    </nav>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./static/js/main.58114fb1.js"></script>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 14px; line-height: 16.8px; display: inline-block;"
+         aria-hidden="true" role="presentation">9
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">Gas
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">y
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 14px; line-height: 16.8px; display: inline-block;"
+         aria-hidden="true" role="presentation">WWW
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: bold; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">Gas
+    </div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">s
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 20px; line-height: 24px; display: inline-block;"
+         aria-hidden="true" role="presentation">Total <br> €214
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 14px; line-height: 16.8px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans Regular; font-weight: normal; font-size: 14px; line-height: 16.8px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans Regular; font-weight: normal; font-size: 15px; line-height: 18px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">€214
+    </div>
+    <div style="font-family: Nunito Sans Regular; font-weight: normal; font-size: 30px; line-height: 36px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 12.5px; line-height: 15px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation">100
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: bold; font-size: 13px; line-height: 15.6px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">kWh
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 13px; line-height: 15.6px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">Ag
+    </div>
+    <div style="font-family: Nunito Sans Light; font-size: 13px; line-height: 15.6px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans Light; font-weight: bold; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 16px; line-height: 19.2px; display: inline-block;"
+         aria-hidden="true" role="presentation">Other
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 14px; line-height: 16.8px; display: inline-block;"
+         aria-hidden="true" role="presentation">3 kWh
+    </div>
+    <div style="font-family: Nunito Sans Light; font-weight: normal; font-size: 15px; line-height: 18px; display: inline-block;"
+         aria-hidden="true" role="presentation"><span class="_SmartLabel">T</span><span
+            class="_SmartLabel">o</span><span class="_SmartLabel">p</span><span class="_SmartLabel"> </span><span
+            class="_SmartLabel">3</span><span class="_SmartLabel"> </span><span class="_SmartLabel">a</span><span
+            class="_SmartLabel">p</span><span class="_SmartLabel">p</span><span class="_SmartLabel">l</span><span
+            class="_SmartLabel">i</span><span class="_SmartLabel">a</span><span class="_SmartLabel">n</span><span
+            class="_SmartLabel">c</span><span class="_SmartLabel">e</span><span class="_SmartLabel">s</span><span
+            class="_SmartLabel _SmartLabelBR"><br></span><span class="_SmartLabel"></span><span
+            class="_SmartLabel">m</span><span class="_SmartLabel">a</span><span class="_SmartLabel">k</span><span
+            class="_SmartLabel">e</span><span class="_SmartLabel"> </span><span class="_SmartLabel">u</span><span
+            class="_SmartLabel">p</span><span class="_SmartLabel"> </span><span class="_SmartLabel">7</span><span
+            class="_SmartLabel">0</span><span class="_SmartLabel">.</span><span class="_SmartLabel">3</span><span
+            class="_SmartLabel">%</span><span class="_SmartLabel _SmartLabelBR"><br></span><span
+            class="_SmartLabel"></span><span class="_SmartLabel">o</span><span class="_SmartLabel">f</span><span
+            class="_SmartLabel"> </span><span class="_SmartLabel">t</span><span class="_SmartLabel">h</span><span
+            class="_SmartLabel">e</span><span class="_SmartLabel"> </span><span class="_SmartLabel">n</span><span
+            class="_SmartLabel">e</span><span class="_SmartLabel">t</span><span class="_SmartLabel"> </span><span
+            class="_SmartLabel">u</span><span class="_SmartLabel">s</span><span class="_SmartLabel">a</span><span
+            class="_SmartLabel">g</span><span class="_SmartLabel">e</span><span class="_SmartLabel">.</span></div>
+    <div style="font-family: Nunito Sans Light; font-weight: bold; font-size: 13px; line-height: 15.6px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation">0.2 kWh
+    </div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 10px; line-height: 12px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 45px; line-height: 54px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 25px; line-height: 30px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 10px; line-height: 12px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 10px; line-height: 12px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 10px; line-height: 12px; display: inline-block;"
+         aria-hidden="true" role="presentation">W...
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 10px; line-height: 12px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 16px; line-height: 19.2px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 11px; line-height: 13.2px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+<span id="fusioncharts-tooltip-element"
+      style="display: none; position: absolute; text-align: left; margin: 0px; z-index: 99999; pointer-events: none; top: 422px; left: 436px;"><span
+        style="overflow: hidden; display: block; font-family: Nunito Sans; font-size: 10px; line-height: 12px; color: rgb(253, 253, 253); background-color: rgb(255, 255, 255); border-color: rgb(84, 84, 84); border-width: 1px; padding: 3px; border-radius: 0px; border-style: solid; box-shadow: rgba(64, 64, 64, 0.4) 1px 1px 3px; white-space: nowrap;"><div>Electricity<br>$139 (64.95%)<div></div></div></span></span>
+<div class="fusioncharts-smartlabel-container" aria-hidden="true" role="presentation"
+     style="position: absolute; top: -9999em; white-space: nowrap; padding: 0px; width: 1px; height: 1px; overflow: hidden;">
+    <div style="font-size: 12px; line-height: 14.4px; display: inline-block;" aria-hidden="true"
+         role="presentation"></div>
+    <div style="font-family: Verdana, sans; font-size: 12px; line-height: 14.4px; display: inline-block;"
+         aria-hidden="true" role="presentation">w
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 10px; line-height: 12px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 10px; line-height: 12px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 10px; line-height: 12px; display: inline-block;"
+         aria-hidden="true" role="presentation">W...
+    </div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 10px; line-height: 12px; color: rgb(253, 253, 253); display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 16px; line-height: 19.2px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: normal; font-size: 11px; line-height: 13.2px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+    <div style="font-family: Nunito Sans; font-weight: bold; font-size: 13px; line-height: 15.6px; display: inline-block;"
+         aria-hidden="true" role="presentation"></div>
+</div>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

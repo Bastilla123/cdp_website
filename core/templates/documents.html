@@ -1,0 +1,47 @@
+
+{% extends 'energy/energy_base_template.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+    <div class="row">
+                        <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Documents' %}</h2></div>
+                    </div>
+<div class="row mt-3 db-chart">
+    <div id="parent1" class="chart1-co col-lg-12 col-xl-12">
+        <div class="chart-card mb-4">
+
+   <table>
+            <thead>
+            <tr>
+                <th>{% trans 'Filename' %}</th>
+                <th>{% trans 'Download' %}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for document in documents %}
+            <tr>
+                <td>
+                    {% if document.filename %}
+                    {{document.filename}}
+                    {% else %}
+                    Kein Dateiname
+                    {% endif %}
+                </td>
+                <td>
+
+                    <a href="/{{document.document}}"><i class="fa fa-download" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            </div>
+    </div>
+</div>
+    </div>
+
+{% endblock %}

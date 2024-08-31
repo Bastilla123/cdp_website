@@ -12,7 +12,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from customers.forms import ProfileForm, form_validation_error
-from customers.models import Profile
+from customers.models import *
 from app.bibliothek import new_ingest
 from django.conf import settings
 from rest_framework.views import APIView
@@ -205,9 +205,11 @@ class ProfileView(View):
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
-        contactform = ContactForm(request.POST,request = request)
 
-        context = {'contactform':contactform,'profile': self.profile,'profileform' :ProfileForm(instance=request.user.profile), 'segment': 'profile'}
+
+        context = { 'profile': self.profile,
+                   'profileform': ProfileForm(instance=request.user.profile), 'segment': 'profile',
+                   }
 
         if (settings.BASE_TEMPLATE =='layouts/base-dark.html'):
             return render(request, 'customers/profile_dark.html', context)
@@ -282,9 +284,16 @@ class ProfileView(View):
 
             messages.error(request, form_validation_error(form))
         return redirect('profile')
-@login_required(login_url='/login/')
+
 def home(request):
     contactform = ContactForm(request.POST, request=request)
 
     context = {'contactform': contactform}
     return render(request, 'home.html',context = context)
+
+
+def contactus(request):
+    contactform = ContactForm(request.POST, request=request)
+
+    context = {'contactform': contactform}
+    return render(request, 'energy/contactus.html',context = context)

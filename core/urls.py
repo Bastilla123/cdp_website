@@ -11,6 +11,8 @@ urlpatterns = [
     path("", include("app.urls")),  # UI Kits Html files
     path("", include("authentication.urls")),  # Auth routes - login / register
     path('home', home),
+    path("", include("order.urls")),
+
 
 ]
 
@@ -20,5 +22,7 @@ urlpatterns = [
 
 urlpatterns += static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 

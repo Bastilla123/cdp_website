@@ -6,7 +6,7 @@ from django import template
 from .models import Log
 
 
-@login_required(login_url="/login/")
+
 def index(request):
 
     return redirect('home')

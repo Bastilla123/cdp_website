@@ -13,3 +13,9 @@ Pillow
 python-decouple
 django-middleware-global-request
 jarowinkler #fuzzy search
+djangorestframework
+psycopg2-binary
+django-crispy-forms
+crispy-bootstrap5
+requests
+django-formtools

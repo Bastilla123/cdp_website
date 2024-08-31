@@ -1,0 +1,113 @@
+{% extends request.user.is_authenticated|yesno:"energy/energy_base_template.html,normaltemplate/base.html" %}
+
+{% load i18n %}
+
+{% block extrastyle %}
+
+<style>
+    #content-body { color: #000; }
+    .img-account-profile {
+  height: 10rem;
+  width: 10rem;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+    <div class="row">
+        <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Contact Us' %}</h2></div>
+    </div>
+    <div id="alert" style="display: none;"></div>
+    <form method="POST" enctype="multipart/form-data" id="contact-form">
+         {% csrf_token %}
+    <div class="row mt-3 db-chart">
+        <div id="parent1" class="chart1-co col-lg-12 col-xl-12">
+            <div class="chart-card mb-4">
+                <div class="col-12">
+
+                    <hr class="mt-0 mb-4">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <!-- Account details card-->
+                            <div class="card mb-4">
+                                <div class="card-header">{% trans 'Account Details' %}</div>
+                                <div class="card-body">
+
+
+
+
+
+                                    <div class="row gx-3 mb-3">
+{% for field in contactform %}
+                                        <div class="col-md-12">
+                                            <label class="small mb-1">{{ field.label }}</label>
+                                            {{ contactform.subject }}
+                                        </div>
+{% endfor %}
+
+                                    </div>
+
+
+                                </div>
+                                <div class="card-footer">
+                <button class="btn btn-primary" type="submit">{% trans 'Submit' %}</button>
+                                    </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+      $('#contact-form').on('submit', function(event) {
+
+        event.preventDefault();
+
+        $.ajax({
+          url: '{% url "contact" %}',
+          type: 'POST',
+          data: $(this).serialize(),
+          dataType: 'json',
+          success: function(response) {
+
+
+              $('#contact-form').hide();
+              $('#alert').html('<div class="alert alert-success">{% trans 'Thanks for message' %}</div>').show();
+            },
+            error: function(response) {
+
+              $('#alert').html('<div class="alert alert-danger">' + response.responseJSON.error + '</div>').show();
+            }
+
+        });
+      });
+    });
+</script>
+{% endblock %}

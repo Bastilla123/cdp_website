@@ -1,0 +1,119 @@
+{% extends "order_home.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block head %}
+<style>
+    body {
+	font-family: 'Archivo', sans-serif;
+}
+.btn-lg {
+	padding: 12px 24px;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+.card-footer {
+	background-color: transparent;
+	border-top: none;
+}
+.top-margin{
+margin-top:90px;
+}
+.card-normal{
+margin-bottom:40px !important;
+}
+.card-special{
+margin-top:-40px !important;
+}
+@media (max-width: 868px) {
+.card {
+	width: 100%;
+	flex: none !important;
+}
+.card-normal{
+margin-bottom:0 !important;
+}
+.card-special{
+margin-top:30px !important;
+margin-bottom:30px !important;
+}
+}
+</style>
+{% endblock head %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+
+<div class="container top-margin">
+  <h2>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h2>
+
+
+  <div class="row">
+
+    <div class="col-12">
+
+
+      <div class="card-group">
+
+
+        {% for product in products_list %}
+
+        <div class="card {% if forloop.counter == 2 %} card-special {% else %} card-normal {% endif %}">
+          {% if forloop.counter == 2 %}<div style="position:absolute; right:0;"> <img src="https://annedece.sirv.com/Images/popular.png"></div> {% endif %}
+          <div class="card-header bg-primary text-white text-center py-5">
+            <h2>{{ product.title }}</h2>
+            <p class="m-0">{{ product.subtitle }}</p>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+
+              <li class="list-group-item"><i class="lni lni-checkmark mr-3 text-primary"></i> Vertragslaufzeit: {{ product.vertragslaufzeit }}</li>
+              <li class="list-group-item"><i class="lni lni-checkmark mr-3 text-primary"></i> Kündigungsfrist: {{ product.kuendigungsfrist }}</li>
+            </ul>
+          </div>
+          <div class="card-footer text-center py-4">
+            <div class="d-flex align-items-baseline justify-content-center mb-2">
+              <h3 class="display-4">€{{ product.arbeitspreis }}</h3>
+              &nbsp;
+              <p class="text-muted lead"> / kwh</p>
+            </div>
+            <div class="d-flex align-items-baseline justify-content-center mb-2">
+              <h3 class="display-4">€{{ product.basisprice }}</h3>
+              &nbsp;
+              <p class="text-muted lead"> / monat</p>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ wizard.management_form }}
+              {% comment %}
+              <select name="1-products" class="select form-select" required="" id="id_1-products">
+                <option value="{{ product.id }}" selected="">-</option>
+
+</select>
+              {% endcomment %}
+<input name="1-products" type="hidden" value = "{{ product.id }}">
+
+
+
+            <button class="btn btn-outline-primary btn-lg mb-3" type="submit">Select</button>
+               </form>
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+
+
+      {% if wizard.steps.prev %}
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+<button class = "btn btn-lg btn-warning"name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "first step" %}</button>
+<button class= "btn  btn-lg btn-primary" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "prev step" %}</button>
+      </form>
+{% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -103,3 +103,4 @@ ENV/
 *.sqlite3
 
 settings.ini
+/order/migrations/

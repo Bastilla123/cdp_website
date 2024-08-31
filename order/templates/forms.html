@@ -1,0 +1,64 @@
+{% extends "normaltemplate/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load i18n %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="mt-5 ml-5">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-4">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                        <div class="float-left">{% trans 'Order' %}</div>
+                        <div class="float-right">{% trans 'Step' %} {{ wizard.steps.step1 }} {% trans 'of' %} {{ wizard.steps.count }}
+                        </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+
+                        <div class="container-sm">
+
+
+                            {% csrf_token %}
+
+                            <table>
+                                {{ wizard.management_form }}
+                                {% if wizard.form.forms %}
+                                {{ wizard.form.management_form }}
+                                {% for form in wizard.form.forms %}
+                                {{ form|crispy }}
+                                {% endfor %}
+                                {% else %}
+                                {{ wizard.form|crispy }}
+                                {% endif %}
+                            </table>
+
+
+                            {% if wizard.steps.prev %}
+                            <button class="btn btn-lg btn-warning" name="wizard_goto_step" type="submit"
+                                    value="{{ wizard.steps.first }}">{% trans "first step" %}
+                            </button>
+                            <button class="btn  btn-lg btn-primary" name="wizard_goto_step" type="submit"
+                                    value="{{ wizard.steps.prev }}">{% trans "prev step" %}
+                            </button>
+                            {% endif %}
+                            <input class="btn btn-lg btn-success" type="submit" value="{% trans "Submit" %}"/>
+                        </div>
+                    </form>
+                    {% endblock %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

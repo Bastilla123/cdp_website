@@ -1,3 +1,4 @@
+from django.contrib.messages import constants
 import ast
 import os
 from dotenv import load_dotenv
@@ -7,12 +8,22 @@ from decouple import config
 
 load_dotenv()
 
+
+
 location = lambda x: os.path.join(
     os.path.dirname(os.path.realpath(__file__)), x)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+EMAIL_BACKEND = 'backend.email.EmailBackend'
+EMAIL_HOST = 'mail.beelze-solutions.de'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'postmaster@beelze-solutions.de'
+EMAIL_HOST_PASSWORD = 'fsjZV2XKmXFBTw2RyacD'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 SECRET_KEY = 'eyJmb28iOiJiYXIifQ:1kx6Rf:LBB39RQmME-SRvilheUe5EmPYRbuDBgQp2tCAi7KGLk'
 
@@ -33,6 +44,26 @@ ALLOWED_HOSTS = ['*']
 
 APPEND_SLASH=False
 
+CDC_SERVER = config('CDC_SERVER')
+
+CDC_APIKEY = config('CDC_APIKEY')
+CDC_SECRET = config('CDC_SECRET')
+CDC_USERKEY = config('CDC_USERKEY')
+CDC_LOCALLIST = config('CDC_LOCALLIST')
+
+SEND_EMAIL = config('SEND_EMAIL', cast=bool)
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'info',
+    constants.INFO: 'info',
+    constants.SUCCESS: 'success',
+    constants.WARNING: 'warning',
+    constants.ERROR: 'danger',
+}
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +77,9 @@ INSTALLED_APPS = [
     'customers',
     'rest_framework',
 'django_middleware_global_request',
+    'order', #Bestellstrecke
+'crispy_forms',
+    "crispy_bootstrap5"
 ]
 
 MIDDLEWARE = [
