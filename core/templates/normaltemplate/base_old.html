@@ -28,10 +28,6 @@
   <link href="{% static 'newtemplate/css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'newtemplate/css/responsive.css' %}" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
   <style>
     #logout-form {
   display: inline;
@@ -55,10 +51,25 @@
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
-
-
+      <div class="header_top">
+        <div class="container-fluid">
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Telefon : +49
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                Email : demo@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
       <div class="header_bottom">
-        {% include 'message.html' %}
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" href="index.html">
@@ -98,7 +109,6 @@
 
                 </li>
                 {% endif %}
-                {% include 'includes/navigation.html' %}
               </ul>
             </div>
           </nav>
@@ -114,7 +124,7 @@
 
 
   <script src="{% static 'newtemplate/js/jquery-3.4.1.min.js' %}"></script>
-
+  <script src="{% static 'newtemplate/js/bootstrap.js' %}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
   <script src="{% static 'newtemplate/js/custom.js' %}"></script>

@@ -1,4 +1,4 @@
-{% extends request.user.is_authenticated|yesno:"energy/energy_base_template.html,normaltemplate/base.html" %}
+{% extends template %}
 
 {% load i18n %}
 
@@ -21,6 +21,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
     <div class="row">
         <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Contact Us' %}</h2></div>

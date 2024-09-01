@@ -201,81 +201,81 @@ def execute_order(request):
 
 class customerFormSubmission(CookieWizardView):
 
-    #form_list = [preselection_Form,product_Form, CustomerInfoForm,ConsentForm]
-    form_list = [preselection_Form,ConsentForm]
+    form_list = [preselection_Form,product_Form, CustomerInfoForm,ConsentForm]
+    #form_list = [preselection_Form,ConsentForm]
 
-    def post(self, *args, **kwargs):
-
-        """
-        This method handles POST requests.
-        The wizard will render either the current step (if form validation
-        wasn't successful), the next step (if the current step was stored
-        successful) or the done view (if no more steps are available)
-        """
-        # Look for a wizard_goto_step element in the posted data which
-        # contains a valid step name. If one was found, render the requested
-        # form. (This makes stepping back a lot easier).
-        wizard_goto_step = self.request.POST.get('wizard_goto_step', None)
-        if wizard_goto_step and wizard_goto_step in self.get_form_list():
-            return self.render_goto_step(wizard_goto_step)
-        # Check if form was refreshed
-        management_form = ManagementForm(self.request.POST, prefix=self.prefix)
-        if not management_form.is_valid():
-            print("Management not valid")
-            raise ValidationError(
-                _('ManagementForm data is missing or has been tampered.'),
-                code='missing_management_form',
-            )
-        form_current_step = management_form.cleaned_data['current_step']
-        if (form_current_step != self.steps.current and
-                self.storage.current_step is not None):
-            # form refreshed, change current step
-            self.storage.current_step = form_current_step
-        # get the form for the current step
-        form = self.get_form(data=self.request.POST, files=self.request.FILES)
-        # and try to validate
-        if form.is_valid():
-            # if the form is valid, store the cleaned data and files.
-            self.storage.set_step_data(self.steps.current, self.process_step(form))
-            self.storage.set_step_files(self.steps.current, self.process_step_files(form))
-            # check if the current step is the last step
-            if self.steps.current == self.steps.last:
-                print("Done")
-                # no more steps, render done view
-                return self.render_done(form, **kwargs)
-            else:
-
-                # proceed to the next step
-                return self.render_next_step(form)
-
-        return self.render(form)
-
-    def render_done(self, form, **kwargs):
-
-        """
-        This method gets called when all forms passed. The method should also
-        re-validate all steps to prevent manipulation. If any form fails to
-        validate, `render_revalidation_failure` should get called.
-        If everything is fine call `done`.
-        """
-        final_forms = OrderedDict()
-        # walk through the form list and try to validate the data again.
-        for form_key in self.get_form_list():
-            print("Step {} data {} ".format(form_key,self.storage.get_step_data(form_key)))
-            form_obj = self.get_form(step=form_key,
-                                     data=self.storage.get_step_data(form_key),
-                                     files=self.storage.get_step_files(form_key))
-            if not form_obj.is_valid():
-                print("Failure form_key {} form_obj {} kwargs {}".format(form_key, form_obj, kwargs))
-                return self.render_revalidation_failure(form_key, form_obj, **kwargs)
-            final_forms[form_key] = form_obj
-        # render the done view and reset the wizard before returning the
-        # response. This is needed to prevent from rendering done with the
-        # same data twice.
-        done_response = self.done(final_forms.values(), form_dict=final_forms, **kwargs)
-        self.storage.reset()
-        print("Return "+str(done_response))
-        return done_response
+    # def post(self, *args, **kwargs):
+    #
+    #     """
+    #     This method handles POST requests.
+    #     The wizard will render either the current step (if form validation
+    #     wasn't successful), the next step (if the current step was stored
+    #     successful) or the done view (if no more steps are available)
+    #     """
+    #     # Look for a wizard_goto_step element in the posted data which
+    #     # contains a valid step name. If one was found, render the requested
+    #     # form. (This makes stepping back a lot easier).
+    #     wizard_goto_step = self.request.POST.get('wizard_goto_step', None)
+    #     if wizard_goto_step and wizard_goto_step in self.get_form_list():
+    #         return self.render_goto_step(wizard_goto_step)
+    #     # Check if form was refreshed
+    #     management_form = ManagementForm(self.request.POST, prefix=self.prefix)
+    #     if not management_form.is_valid():
+    #         print("Management not valid")
+    #         raise ValidationError(
+    #             _('ManagementForm data is missing or has been tampered.'),
+    #             code='missing_management_form',
+    #         )
+    #     form_current_step = management_form.cleaned_data['current_step']
+    #     if (form_current_step != self.steps.current and
+    #             self.storage.current_step is not None):
+    #         # form refreshed, change current step
+    #         self.storage.current_step = form_current_step
+    #     # get the form for the current step
+    #     form = self.get_form(data=self.request.POST, files=self.request.FILES)
+    #     # and try to validate
+    #     if form.is_valid():
+    #         # if the form is valid, store the cleaned data and files.
+    #         self.storage.set_step_data(self.steps.current, self.process_step(form))
+    #         self.storage.set_step_files(self.steps.current, self.process_step_files(form))
+    #         # check if the current step is the last step
+    #         if self.steps.current == self.steps.last:
+    #             print("Done")
+    #             # no more steps, render done view
+    #             return self.render_done(form, **kwargs)
+    #         else:
+    #
+    #             # proceed to the next step
+    #             return self.render_next_step(form)
+    #
+    #     return self.render(form)
+    #
+    # def render_done(self, form, **kwargs):
+    #
+    #     """
+    #     This method gets called when all forms passed. The method should also
+    #     re-validate all steps to prevent manipulation. If any form fails to
+    #     validate, `render_revalidation_failure` should get called.
+    #     If everything is fine call `done`.
+    #     """
+    #     final_forms = OrderedDict()
+    #     # walk through the form list and try to validate the data again.
+    #     for form_key in self.get_form_list():
+    #         print("Step {} data {} ".format(form_key,self.storage.get_step_data(form_key)))
+    #         form_obj = self.get_form(step=form_key,
+    #                                  data=self.storage.get_step_data(form_key),
+    #                                  files=self.storage.get_step_files(form_key))
+    #         if not form_obj.is_valid():
+    #             print("Failure form_key {} form_obj {} kwargs {}".format(form_key, form_obj, kwargs))
+    #             return self.render_revalidation_failure(form_key, form_obj, **kwargs)
+    #         final_forms[form_key] = form_obj
+    #     # render the done view and reset the wizard before returning the
+    #     # response. This is needed to prevent from rendering done with the
+    #     # same data twice.
+    #     done_response = self.done(final_forms.values(), form_dict=final_forms, **kwargs)
+    #     self.storage.reset()
+    #     print("Return "+str(done_response))
+    #     return done_response
 
     def get_context_data(self, form, **kwargs):
         context = super().get_context_data(form=form, **kwargs)
