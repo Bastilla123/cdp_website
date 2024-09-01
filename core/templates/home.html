@@ -1,17 +1,42 @@
 
 {% extends 'normaltemplate/base.html' %}
 {% load i18n %}
+{% block extrastyles %}
+<style>
+
+body {
+  background-image: url(https://www.stawag.de/fileadmin/_processed_/f/6/csm_Onlineservice_3f80ea0acc.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-attachment: fixed;
+
+  height: 300vh;
+}
+
+
+        </style>
+{% endblock %}
+{% block backgroundimage %}
+{% comment %}
+<div class="visual slick-slide slick-current slick-active" style="background-image: url(&quot;https://www.stawag.de/fileadmin/_processed_/f/6/csm_Onlineservice_3f80ea0acc.jpg&quot;); width: 1854px;" data-adaptive="background" data-img-sd="https://www.stawag.de/fileadmin/_processed_/f/6/csm_Onlineservice_3f80ea0acc.jpg" data-img-md="/fileadmin/_processed_/f/6/csm_Onlineservice_40305f8285.jpg" data-img-lg="/fileadmin/_processed_/f/6/csm_Onlineservice_3f80ea0acc.jpg" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
+  {% endcomment %}
+
+
+{% endblock %}
 
 {% block content %}
+
 <section class="slider_section ">
       <div class="container ">
         <div class="row">
           <div class="col-md-6 ">
             <div class="detail-box">
               <h1>
-                Repair and <br>
-                Maintenance <br>
-                Services
+                Grundversorgung <br>
+                von Morgen <br>
+
               </h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui harum voluptatem adipisci. Quos molestiae saepe dicta nobis pariatur, tempora iusto, ad possimus soluta hic praesentium mollitia consequatur beatae, aspernatur culpa.
@@ -21,15 +46,17 @@
               </a>
             </div>
           </div>
+        {% comment %}
           <div class="col-md-6">
             <div class="img-box">
               <img src="/static/newtemplate/images/slider-img.png" alt="">
             </div>
           </div>
+{% endcomment %}
         </div>
       </div>
     </section>
-<section class="feature_section">
+<section class="feature_section mt-5">
     <div class="container">
       <div class="feature_container">
         <div class="box" onclick="window.location.href='/order/'">

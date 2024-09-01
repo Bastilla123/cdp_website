@@ -42,15 +42,15 @@ def documents(request):
     else:
         messages.error(request, _("You are not login!"))
     return redirect("/login/")
-def contactus(request):
-    if request.user.is_authenticated:
-        documents = UserDocument.objects.filter(user_link=request.user)
-        context = {
-                   'documents': documents}
-        return render(request, "documents.html",context=context)
-    else:
-        messages.error(request, _("You are not login!"))
-    return redirect("/login/")
+# def contactus(request):
+#     if request.user.is_authenticated:
+#         documents = UserDocument.objects.filter(user_link=request.user)
+#         context = {
+#                    'documents': documents}
+#         return render(request, "documents.html",context=context)
+#     else:
+#         messages.error(request, _("You are not login!"))
+#     return redirect("/login/")
 def contact(request):
     if request.method == 'POST':
 

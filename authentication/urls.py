@@ -16,6 +16,7 @@ urlpatterns = [
     path("dashboard", dashboard, name="dashboard"),
     path("cost", cost, name="cost"),
     path("emissions", emissions, name="emissions"),
-    path("documents", documents, name="documents")
+    path("documents", documents, name="documents"),
+    #path("contactus", contactus, name="contactus")
 
 ]
