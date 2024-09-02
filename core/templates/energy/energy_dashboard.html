@@ -1,9 +1,38 @@
-{% extends 'energy/energy_base_template.html' %}
+{% extends 'normaltemplate/base.html' %}
 
 {% load i18n %}
 
+{% block extrastyles %}
+<style>
+    .chart-card {
+  background-color: rgba(29,27,65,.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.chart-title {
+  color: #fdfdfd;
+  font-family: Nunito Sans Light;
+  font-size: 17px;
+  padding: 7px 15px;
+  border-bottom: 2px solid rgba(0,0,0,.2);
+}
+#content-body {
+  background: -webkit-gradient(linear,right top,left bottom,from(#216e93),color-stop(#21648a),color-stop(#1f5881),color-stop(#172d5b),to(#191c51));
+  background: -webkit-linear-gradient(top right,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  background: -o-linear-gradient(top right,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  background: linear-gradient(to bottom left,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  }
+  .chart svg {
+  background-color: transparent !important;
+}
+h2 {
+color:#fff;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+<div id="content-body" class="col-12 col-md-9 col-xl-12 pl-4 pr-4 bd-content">
                     <div class="row">
                         <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Energy Dashboard' %}</h2></div>
                     </div>
@@ -17,7 +46,7 @@
                                          id="b2c6bb61-26cb-4ce2-a837-8e17f34df393"><span id="mychart1"
                                                                                          style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 300px;"
                                                                                          class="fusioncharts-container"><svg
-                                            height="300" version="1.1" width="479" xmlns="http://www.w3.org/2000/svg"
+                                            height="300" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg"
                                             style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.899994px; background-color: rgb(255, 255, 255);"
                                             id="raphael-paper-1016"><desc></desc><defs><radialGradient
                                             id="rr-1016-xr___95_181.75_135__rgba_88_226_194_1__78-rgba_88_226_194_1__89"
@@ -41,10 +70,10 @@
                                             class="raphael-group-1045-parentgroup"><g
                                             class="raphael-group-1046-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="300" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="300" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1047-canvas"></g><g
                                             class="raphael-group-1048-axisbottom"></g><g
@@ -144,7 +173,7 @@
                                     <div data-reactroot="" id="d2c17a64-acac-4703-9426-8566d8600d3f"><span id="mychart2"
                                                                                                            style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 300px;"
                                                                                                            class="fusioncharts-container"><svg
-                                            height="300" version="1.1" width="479" xmlns="http://www.w3.org/2000/svg"
+                                            height="300" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg"
                                             style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.899994px; background-color: rgb(255, 255, 255);"
                                             id="raphael-paper-1020"><desc></desc><defs><clipPath
                                             id="rr-4969E019-E453-476A-8C88-5DD7EEC9C46C"><rect x="35" y="60" width="244"
@@ -194,10 +223,10 @@
                                             class="raphael-group-1087-parentgroup"><g
                                             class="raphael-group-1088-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="300" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="300" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1089-canvas"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(255, 255, 255);" x="35"
@@ -371,7 +400,7 @@
                                          id="d4e35edf-35a2-4c5b-80ee-91bc6b07943c"><span id="mychart3"
                                                                                          style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 300px;"
                                                                                          class="fusioncharts-container"><svg
-                                            height="300" version="1.1" width="479" xmlns="http://www.w3.org/2000/svg"
+                                            height="300" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg"
                                             style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.899994px; background-color: rgb(255, 255, 255);"
                                             id="raphael-paper-1024"><desc></desc><defs><clipPath
                                             id="rr-6C143818-FFFF-4C09-BCEB-2925663D3574"><rect x="63" y="75" width="386"
@@ -418,10 +447,10 @@
                                             class="raphael-group-1169-parentgroup"><g
                                             class="raphael-group-1170-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="300" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="300" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1171-canvas"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(255, 255, 255);" x="63"
@@ -931,7 +960,7 @@
                                     <div data-reactroot="" class="fc-bar2d" id="90aaf997-408c-4d5c-b5c4-380bd024ec6a">
                                         <span id="mychart4"
                                               style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 300px;"
-                                              class="fusioncharts-container"><svg height="300" version="1.1" width="479"
+                                              class="fusioncharts-container"><svg height="300" version="1.1" width="600"
                                                                                   xmlns="http://www.w3.org/2000/svg"
                                                                                   style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.400024px; background-color: rgb(255, 255, 255);"
                                                                                   id="raphael-paper-1028"><desc></desc><defs><clipPath
@@ -1005,10 +1034,10 @@
                                                 class="raphael-group-1330-parentgroup"><g
                                                 class="raphael-group-1331-background"><rect
                                                 style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0"
-                                                y="0" width="479" height="300" stroke="none" fill-opacity="0"
+                                                y="0" width="600" height="300" stroke="none" fill-opacity="0"
                                                 fill="#1d1b41" rx="0" ry="0"></rect><rect
                                                 style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;"
-                                                x="0" y="0" width="479" height="300" stroke="#767575"
+                                                x="0" y="0" width="600" height="300" stroke="#767575"
                                                 stroke-opacity="0.5" stroke-width="0" stroke-dasharray="none"
                                                 fill="none" rx="0" ry="0"></rect></g><g
                                                 class="raphael-group-1332-canvas"><rect
@@ -1227,7 +1256,7 @@
                                          id="28c9efd4-6275-4196-bb68-be95601042dc"><span id="mychart5"
                                                                                          style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 300px;"
                                                                                          class="fusioncharts-container"><svg
-                                            height="300" version="1.1" width="479" xmlns="http://www.w3.org/2000/svg"
+                                            height="300" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg"
                                             style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.400024px; background-color: rgb(255, 255, 255);"
                                             id="raphael-paper-1032"><desc></desc><defs><radialGradient
                                             id="rr-1032-xr___50__0.5_0.5__rgba_163_163_163_0__0-rgba_255_255_255_0__50-rgba_122_122_122_0__100"
@@ -1268,10 +1297,10 @@
                                             class="raphael-group-1409-parentgroup"><g
                                             class="raphael-group-1410-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="300" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="300" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="300" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1411-canvas"></g><g
                                             class="raphael-group-1868-annotations" style="" x="0" y="0"
@@ -1539,7 +1568,7 @@
                                     <div data-reactroot="" id="7f1b3432-8d1e-410d-960b-9631e3d0c64b"><span id="mychart6"
                                                                                                            style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 150px;"
                                                                                                            class="fusioncharts-container"><svg
-                                            height="150" version="1.1" width="479" xmlns="http://www.w3.org/2000/svg"
+                                            height="150" version="1.1" width="600" xmlns="http://www.w3.org/2000/svg"
                                             style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.400024px; background-color: rgb(255, 255, 255);"
                                             id="raphael-paper-1036"><desc></desc><defs><clipPath
                                             id="rr-F65D3C81-C20E-4275-9C97-D3433DCD8F86"><rect x="20" y="69.5"
@@ -1568,10 +1597,10 @@
                                             class="raphael-group-1502-parentgroup"><g
                                             class="raphael-group-1503-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="150" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="150" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="150" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="150" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1504-canvas"></g><g
                                             class="raphael-group-1873-annotations" style="" x="0" y="0"
@@ -1746,7 +1775,7 @@
                                     <div data-reactroot="" id="51864c99-24a5-41ed-963a-5807181fb038"><span
                                             id="mychart10"
                                             style="position: relative; text-align: left; line-height: normal; display: inline-block; vertical-align: middle; font-weight: normal; font-variant: normal; font-style: normal; text-decoration: none; padding: 0px; margin: 0px; border: medium; direction: ltr; width: 100%; height: 150px;"
-                                            class="fusioncharts-container"><svg height="150" version="1.1" width="479"
+                                            class="fusioncharts-container"><svg height="150" version="1.1" width="600"
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 style="overflow: hidden; user-select: none; cursor: default; vertical-align: middle; position: relative; top: -0.400024px; background-color: rgb(255, 255, 255);"
                                                                                 id="raphael-paper-1040"><desc></desc><defs><clipPath
@@ -1776,10 +1805,10 @@
                                             class="raphael-group-1571-parentgroup"><g
                                             class="raphael-group-1572-background"><rect
                                             style="stroke: none; fill-opacity: 0; fill: rgb(29, 27, 65);" x="0" y="0"
-                                            width="479" height="150" stroke="none" fill-opacity="0" fill="#1d1b41"
+                                            width="600" height="150" stroke="none" fill-opacity="0" fill="#1d1b41"
                                             rx="0" ry="0"></rect><rect
                                             style="stroke: rgb(118, 117, 117); stroke-opacity: 0.5; fill: none;" x="0"
-                                            y="0" width="479" height="150" stroke="#767575" stroke-opacity="0.5"
+                                            y="0" width="600" height="150" stroke="#767575" stroke-opacity="0.5"
                                             stroke-width="0" stroke-dasharray="none" fill="none" rx="0"
                                             ry="0"></rect></g><g class="raphael-group-1573-canvas"></g><g
                                             class="raphael-group-1883-annotations" style="" x="0" y="0"

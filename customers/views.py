@@ -297,8 +297,6 @@ def contactus(request):
 
     context = {'contactform': contactform}
     print("Path "+str(request.path))
-    if '/customers/contactus' in request.path:
-        context['template'] = 'energy/energy_base_template.html'
-    else:
-        context['template'] = 'normaltemplate/base.html'
-    return render(request, 'energy/contactus.html',context = context)
+
+
+    return render(request, 'contactus.html',context = context)

@@ -85,9 +85,17 @@
                   <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}</a>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'dashboard' %}">{% trans 'pers. Bereich' %}</a>
-                </li>
+                <li class="nav-item" id="Dashboard"><a class="nav-link"
+                                    href="{% url 'dashboard' %}">{% trans 'Dashboard' %}</a></li>
+
+                            <li class="nav-item" id="Cost"><a class="nav-link"
+                                    href="{% url 'cost' %}">{% trans 'Cost' %}</a></li>
+
+                            <li class="nav-item" id="Emissions"><a class="nav-link"
+                                    href="{% url 'emissions' %}">{% trans 'Emissions' %}</a></li>
+                            <li class="nav-item" id="Appliances"><a class="nav-link" href="{% url 'profile' %}">{% trans 'Profiles' %}</a></li>
+                            <li class="nav-item" id="Usage-by-rooms"><a class="nav-link" href="{% url 'documents' %}">{% trans 'Documents' %}</a></li>
+
                 <li class="nav-item">
                   <form id="logout-form"  method="post" action="{% url 'admin:logout' %}">
   {% csrf_token %}

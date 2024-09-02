@@ -1,9 +1,38 @@
-{% extends 'energy/energy_base_template.html' %}
+{% extends 'normaltemplate/base.html' %}
 
 {% load i18n %}
 
+{% block extrastyles %}
+<style>
+    .chart-card {
+  background-color: rgba(29,27,65,.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.chart-title {
+  color: #fdfdfd;
+  font-family: Nunito Sans Light;
+  font-size: 17px;
+  padding: 7px 15px;
+  border-bottom: 2px solid rgba(0,0,0,.2);
+}
+#content-body {
+  background: -webkit-gradient(linear,right top,left bottom,from(#216e93),color-stop(#21648a),color-stop(#1f5881),color-stop(#172d5b),to(#191c51));
+  background: -webkit-linear-gradient(top right,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  background: -o-linear-gradient(top right,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  background: linear-gradient(to bottom left,#216e93,#21648a,#1f5881,#172d5b,#191c51);
+  }
+  .chart svg {
+  background-color: transparent !important;
+}
+body {
+color:#fff;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+<div id="content-body" class="col-12 col-md-9 col-xl-12 pl-4 pr-4 bd-content">
     <div class="row">
                         <div class="col-md-12 pt-4 mt-3"><h2>{% trans 'Energy Dashboard' %}</h2></div>
                     </div>

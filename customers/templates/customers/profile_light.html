@@ -1,10 +1,10 @@
-{% extends 'energy/energy_base_template.html' %}
+{% extends 'normaltemplate/base.html' %}
 {% load static %}
 {% load i18n %}
 {% block title %} Settings {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block extrastyle %}
+{% block extrastyles %}
 
 <style>
     #content-body { color: #000; }
@@ -19,12 +19,13 @@
 
 
 </style>
+
 {% endblock %}
 
 
 {% block content %}
 
-<div id="content-body" class="col-12 col-md-9 col-xl-10 pl-4 pr-4 bd-content">
+<div id="content-body" class="col-12 col-md-9 col-xl-12 pl-4 pr-4 bd-content">
     <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">
