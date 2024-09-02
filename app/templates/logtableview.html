@@ -1,4 +1,4 @@
-{% extends base_template %}
+{% extends 'normaltemplate/base.html' %}
 {% load static %}
 {% load i18n %}
 {% block title %} Log {% endblock %}
@@ -6,36 +6,39 @@
 {% block content %}
 
 
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
 
-  <div class="">
-    <div class="row">
 
+                <div class="col-12 table-responsive">
 
-        <div class="col-12 table-responsive">
-
-<table class="table  table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">{% trans 'Created At' %}</th>
-      <th scope="col">{% trans 'Updated At' %}</th>
-      <th scope="col">{% trans 'Loglevel' %}</th>
-        <th scope="col">{% trans 'Logtext' %}</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for entry in logsentrys %}
-    <tr>
-      <th scope="row">{{ entry.id }}</th>
-      <td>{{ entry.created_at }}</td>
-      <td>{{ entry.updated_at }}</td>
-      <td>{{ entry.loglevel }}</td>
-        <td>{{ entry.text }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+                    <table class="table  table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{% trans 'Created At' %}</th>
+                            <th scope="col">{% trans 'Updated At' %}</th>
+                            <th scope="col">{% trans 'Loglevel' %}</th>
+                            <th scope="col">{% trans 'Logtext' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entry in logsentrys %}
+                        <tr>
+                            <th scope="row">{{ entry.id }}</th>
+                            <td>{{ entry.created_at }}</td>
+                            <td>{{ entry.updated_at }}</td>
+                            <td>{{ entry.loglevel }}</td>
+                            <td>{{ entry.text }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
+</div>
 {% endblock content %}
