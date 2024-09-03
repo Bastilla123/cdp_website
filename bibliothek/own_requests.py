@@ -28,7 +28,7 @@ def execute_post_request(url,data = {},expected_status = 200):
 
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     print("Data {} url {}".format(data,url))
-    #log('Execute_request Post url {} data {} headers {}'.format(url, data, headers))
+
     data.update({
             'ApiKey': cdc_apikey,
             'userKey': cdc_userkey,
@@ -38,7 +38,7 @@ def execute_post_request(url,data = {},expected_status = 200):
 
 
                              data=data, headers=headers)
-    #log('Execute_request Response Statuscode {} Json {}'.format(response.status_code,response.json()))
+
 
     jsonresponsedata = response.json()
 

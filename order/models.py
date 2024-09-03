@@ -18,18 +18,18 @@ class Product(models.Model):
         return self.title
 
 
-class CustomerInfo(models.Model):
-    firstname = models.CharField(max_length=255)
-    lastname = models.CharField(max_length=255)
-
-    street = models.CharField(max_length=255)
-    housenumber = models.CharField(max_length=255)
-    zip = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    email = models.EmailField(max_length=255)
-    birthday = models.DateField(_("Birthday"), default=date.today)
-    phone = models.CharField(max_length=255)
-    iban = models.CharField(max_length=34)
+# class CustomerInfo(models.Model):
+#     firstname = models.CharField(max_length=255)
+#     lastname = models.CharField(max_length=255)
+#
+#     street = models.CharField(max_length=255)
+#     housenumber = models.CharField(max_length=255)
+#     zip = models.CharField(max_length=255)
+#     city = models.CharField(max_length=255)
+#     email = models.EmailField(max_length=255)
+#     birthday = models.DateField(_("Birthday"), default=date.today)
+#     phone = models.CharField(max_length=255)
+#     iban = models.CharField(max_length=34)
 
 
 

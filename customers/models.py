@@ -21,6 +21,7 @@ class Contact(models.Model):
     city = models.CharField(max_length=255)
     user_link = models.OneToOneField(User, related_name="user_link", on_delete=models.CASCADE)
 
+
     def __str__(self):
         return self.email
 class Profile(models.Model):

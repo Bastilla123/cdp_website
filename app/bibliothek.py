@@ -11,6 +11,7 @@ cdp_businessunit = settings.CDP_BUSINESSUNIT
 
 def log(loglevel,text):
     Log(loglevel = loglevel, text = text).save()
+    print("Text "+str(text))
 
 def execute_request(url,data,expected_status):
 
@@ -43,4 +44,5 @@ def new_ingest(cdp_event,data):
 
     data["userKey"] = cdp_api_username
     data["secret"] = cdp_api_password
+    print("Data "+str(data))
     return execute_request(url, data,202)

@@ -6,12 +6,14 @@ from bibliothek.cdc import *
 from django.forms import ValidationError
 from bibliothek.widgets import *
 from django.utils.translation import gettext_lazy as _
+from customers.models import Profile
+
 
 class preselection_Form(forms.ModelForm):
     expected_consumption = forms.IntegerField(required=True)
 
     class Meta:
-        model = CustomerInfo
+        model = Profile
         fields = ["zip"]
         labels = {'zip': _('ZIP'), 'expected_consumption': _('Expected Consumption in kwh')}
 
@@ -22,8 +24,8 @@ class product_Form(forms.Form):
 
 class CustomerInfoForm(forms.ModelForm):
     class Meta:
-        model = CustomerInfo
-        exclude = ['zip']
+        model = Profile
+        exclude = ['zip','image']
 
 
 

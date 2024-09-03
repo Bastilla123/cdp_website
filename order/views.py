@@ -202,7 +202,7 @@ def execute_order(request):
 class customerFormSubmission(CookieWizardView):
 
     form_list = [preselection_Form,product_Form, CustomerInfoForm,ConsentForm]
-    #form_list = [preselection_Form,ConsentForm]
+
 
     # def post(self, *args, **kwargs):
     #
