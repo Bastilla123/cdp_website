@@ -78,7 +78,7 @@ def execute_order(request):
 
     except Exception as e:
             messages.error(request, "Error on saving User {}".format(e))
-    profileentry = Profile.objects.create(user=userentry,phone =context['phone'],address =context['street'],number =context['housenumber'],
+    profileentry = Profile.objects.create(user=userentry,phone =context['phone'],address =context['address'],number =context['number'],
                                               city =context['city'],zip =context['zip'],iban =context['iban'])
     profileentry.save()
 
@@ -182,7 +182,7 @@ def execute_order(request):
 
 
 
-    accountdata = {"address":(str(context["street"])+str(context["housenumber"])),"firstName":context["firstname"], "lastName":context["lastname"], "email": context["email"],"city":context['city'],"zip": context['zip']}
+    accountdata = {"address":(str(context["address"])+str(context["number"])),"firstName":context["firstname"], "lastName":context["lastname"], "email": context["email"],"city":context['city'],"zip": context['zip']}
 
     try:
         insert_FullAccount(str(userentry.id),
@@ -199,7 +199,7 @@ def execute_order(request):
     return redirect('home')
 
 
-class customerFormSubmission(CookieWizardView):
+class order_line(CookieWizardView):
 
     form_list = [preselection_Form,product_Form, CustomerInfoForm,ConsentForm]
 
@@ -295,7 +295,7 @@ class customerFormSubmission(CookieWizardView):
 
 
     def done(self, form_list, **kwargs):
-        print("Done")
+
         contextnew = {}
         for form in form_list:
             contextnew.update(form.cleaned_data)

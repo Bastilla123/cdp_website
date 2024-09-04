@@ -32,7 +32,12 @@ class CustomerInfoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        #self.fields['birthday'].widget = DatePicker()
+        self.fields['firstname'] = forms.CharField(required=True)
+        self.fields['lastname'] = forms.CharField(required=True)
+        self.fields['email'] = forms.CharField(required=True)
+        self.fields['address'].required = True
+        self.fields['number'].required = True
+        self.fields['city'].required = True
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
