@@ -45,6 +45,8 @@
 }
 
   </style>
+  {% block extrahead %}
+  {% endblock %}
 {% block extrastyles %}
   {% endblock %}
 </head>
@@ -128,7 +130,8 @@
   <script src="{% static 'newtemplate/js/custom.js' %}"></script>
 {% block javascripts %}
 {% endblock %}
-
+{% block extra_script %}
+{% endblock %}
 
 </body>
 

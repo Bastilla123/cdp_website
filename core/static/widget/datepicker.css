@@ -1,0 +1,202 @@
+.unset {
+    position: unset !important;
+}
+
+.relative {
+    position: relative;
+}
+
+.w-datepicker {
+    width: 260px;
+}
+
+#Form .w-datetimepicker {
+    width: 520px;
+}
+
+#Form .datetime-picker-input {
+    font-weight: 700;
+    font-size: 16px;
+    width: 100%;
+    padding: 16px 8px;
+    box-sizing: border-box;
+    z-index: 2;
+    background: transparent;
+}
+
+#Form .datetime-picker-input {
+    border: none !important;
+}
+
+#Form .datetime-picker-input::placeholder {
+    font-weight: normal;
+}
+
+#Form .input-container {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px #dadfe6 solid;
+    border-radius: 4px;
+    color: #0f294d;
+    padding: 2px;
+}
+
+#Form .datetime-picker-input:focus {
+    outline: none;
+}
+
+
+#Form .custom-select {
+    width: 100%;
+    position: relative;
+}
+
+#Form .dropdownlist {
+    left: 0;
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 rgba(15,41,77,.08);
+    margin-top: 8px;
+    max-height: 243px;
+    overflow-y: auto;
+    bottom: 0;
+    transform: translateY(100%);
+    z-index: 3;
+}
+
+#Form .custom-select.open .dropdownlist{
+    display: block !important;
+}
+
+#Form .custom-select.open .input-container{
+    border: 1px #3264ff solid;
+    outline: none;
+}
+
+#Form .input-container:focus-within {
+    border: 1px #3264ff solid;
+    outline: none;
+}
+
+#Form .input-container:focus {
+    border: 1px #3264ff solid;
+    outline: none;
+}
+
+
+#Form .dropdownlist li {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 16px;
+}
+
+#Form .dropdownlist li:hover {
+    background: rgba(50,100,255,.1);
+}
+
+#Form .dropdown-input.data {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+#Form .dropdown-input.data .datetime-picker-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+}
+
+#Form .hidden {
+    display: none !important;
+}
+
+#Form .dropdownlist.data-day li{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+}
+
+#Form .dropdownlist.data-day li:hover {
+    background: rgba(50,100,255,.08);
+}
+
+#Form .dropdownlist.data-day {
+    display: none;
+    flex-wrap: wrap;
+    padding: 16px;
+    max-height: 243px;
+    overflow-y: auto;
+}
+
+#Form .custom-select.open .dropdownlist.data-day {
+    display: flex !important;
+}
+
+#Form .dropdownlist.data-month, .dropdownlist.data-year, .dropdownlist.data-hour {
+    bottom: -20px;
+}
+
+#Form .dropdown-input.date {
+    cursor: pointer;
+}
+
+#Form .dropdownlist li.selected {
+    color: #3264ff;
+    font-weight: 700;
+}
+
+#Form .input-container {
+    display: flex;
+    align-items: center;
+}
+
+#Form .input-container i{
+    position: absolute;
+    right: 10px;
+}
+
+#Form .input-container.dropdown,  .input-container.dropdown .datetime-picker-input{
+    cursor: pointer;
+}
+
+#Form .custom-select.open .input-container.dropdown i{
+    transform: rotate(180deg);
+    color: #3264ff;
+}
+
+#Form .dropdownlist.data-day li.selected {
+    background: #3264ff;
+    color: #fff;
+}
+
+#Form .date-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#Form .date-input-container i{
+    position: absolute;
+}
+
+#Form .custom-select.open .date-input-container i{
+    transform: rotate(180deg);
+    color: #3264ff;
+}
+
+#Form .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -100,6 +100,12 @@ LOGIN_REDIRECT_URL = "home"   # Route defined in app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "core/templates")  # ROOT dir for templates
 
+EMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

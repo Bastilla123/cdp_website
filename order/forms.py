@@ -7,6 +7,7 @@ from django.forms import ValidationError
 from bibliothek.widgets import *
 from django.utils.translation import gettext_lazy as _
 from customers.models import Profile
+from bibliothek.widgets import DatePicker
 
 
 class preselection_Form(forms.ModelForm):
@@ -25,9 +26,15 @@ class product_Form(forms.Form):
 class CustomerInfoForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['zip','image']
+        exclude = ['zip','image','user','skype','facebook','twitter','linkedin','instagram','dribble','pinterest']
 
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        #self.fields['birthday'].widget = DatePicker()
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 
 class ConsentForm(forms.Form):

@@ -1,5 +1,28 @@
 from django.forms.widgets import Select
 from django.utils.safestring import mark_safe
+from django.forms import CheckboxInput, Select, SelectMultiple, NumberInput, TextInput
+
+class DatePicker(TextInput):
+    template_name = 'datepicker.html'
+
+    def __init__(self, attrs=None, placeholder=None):
+        if attrs is None:
+            attrs = {}
+        if placeholder:
+            attrs['placeholder'] = placeholder
+        super().__init__(attrs)
+
+
+class DateTimePicker(TextInput):
+    template_name = 'datetimepicker.html'
+
+    def __init__(self, attrs=None, placeholder=None):
+        if attrs is None:
+            attrs = {}
+        if placeholder:
+            attrs['placeholder'] = placeholder
+        super().__init__(attrs)
+
 class choicedownloadwidget(Select):
     def __init__(
             self,

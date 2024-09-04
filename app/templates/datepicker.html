@@ -1,0 +1,68 @@
+{% load static %}
+
+{% block extrahead %}
+  <link href="{% static 'widget/datepicker.css' %}" media="all" rel="stylesheet">
+{% endblock %}
+
+{% block input %}
+
+<div class="relative w-datepicker">
+    <div class="input-container dropdown">
+        <input
+                class="datetime-picker-input text data"
+                type="text"
+                name={{ widget.name }}
+                placeholder="{{ widget.attrs.placeholder }}"
+                readonly
+                value=""
+                onclick="showDateSelectorsHandler(this, '{{ widget.name }}')"
+        />
+        <i class="fa-regular fa-calendar-days"></i>
+    </div>
+    <div class="input-container dropdown dropdown-input data hidden {{ widget.name }}" id="{{ widget.name }}">
+        <div class="custom-select data-day unset">
+            <div class="date-input-container">
+                <input
+                        class="datetime-picker-input dropdown-input date data-day"
+                        type="text"
+                        placeholder="TT"
+                        readonly
+                />
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul class="dropdownlist data-day"></ul>
+        </div>
+        |
+        <div class="custom-select">
+            <div class="date-input-container">
+                <input
+                        class="datetime-picker-input dropdown-input date data-month"
+                        type="text"
+                        placeholder="MM"
+                        readonly
+                />
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul class="dropdownlist data-month"></ul>
+        </div>
+        |
+        <div class="custom-select">
+            <div class="date-input-container">
+                <input
+                        class="datetime-picker-input dropdown-input date data-year"
+                        type="text"
+                        placeholder="JJJJ"
+                        readonly
+                />
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul class="dropdownlist data-year"></ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'widget/datepicker.js' %}"></script>
+{% endblock %}
