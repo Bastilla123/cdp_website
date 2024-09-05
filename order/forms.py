@@ -18,7 +18,12 @@ class preselection_Form(forms.ModelForm):
         fields = ["zip"]
         labels = {'zip': _('ZIP'), 'expected_consumption': _('Expected Consumption in kwh')}
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 class product_Form(forms.Form):
     products = forms.ModelChoiceField(queryset=Product.objects.all())
 
@@ -36,8 +41,17 @@ class CustomerInfoForm(forms.ModelForm):
         self.fields['lastname'] = forms.CharField(required=True)
         self.fields['email'] = forms.CharField(required=True)
         self.fields['address'].required = True
+        self.fields['address'].label = "Straße"
         self.fields['number'].required = True
         self.fields['city'].required = True
+
+        self.fields['firstname'].initial = "Sebastian"
+        self.fields['lastname'].initial = "Jung"
+        self.fields['email'].initial = "s@s.de"
+        self.fields['city'].initial = "2434234"
+        self.fields['number'].initial = "32112321"
+        self.fields['address'].initial = "43223443"
+
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 
@@ -46,33 +60,24 @@ class ConsentForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        consent_list = get_last_consent()
 
-        consentlist = get_list_constenstatements()
+        for consent in consent_list:
+            key=consent['key']
+            if 'downloadurl' in consent:
+                self.fields["{}_boolean".format(key)] = forms.ChoiceField(initial=1, widget=choicedownloadwidget(
+                                download_link=consent['downloadurl']), choices=(
+                                 (0, '-----',), (1, _('Agree'))))
+                self.fields["{}_url".format(key)] = forms.CharField(widget=forms.HiddenInput(), required=False,
+                                                                                 initial=
+                                                                                 consent['downloadurl'])
+            else:
+                self.fields["{}_boolean".format(key)] = forms.ChoiceField(initial=1, choices=(
+                                         (0, '-----',), (1, _('Agree')), (2, _('Not Agree')),))
+            if consent['isMandatory'] == True:
 
-        for key, value in consentlist['preferences'].items():
+                self.fields["{}_boolean".format(key)].required = True
 
-            if 'de' in value["langs"]:
-
-                legal = get_legal_statment('de', key)
-
-                if '1' in legal['legalStatements']['versions']:
-                    if 'documentUrl' in legal['legalStatements']['versions']['1']:
-                        self.fields["{}_boolean".format(key)] = forms.ChoiceField(widget=choicedownloadwidget(
-                            download_link=legal['legalStatements']['versions']['1']['documentUrl']), choices=(
-                            (0, '-----',), (1, _('Agree')),))
-                        self.fields["{}_url".format(key)] = forms.CharField(widget=forms.HiddenInput(), required=False,
-                                                                            initial=
-                                                                            legal['legalStatements']['versions']['1'][
-                                                                                'documentUrl'])
-                    else:
-                        self.fields["{}_boolean".format(key)] = forms.ChoiceField(choices=(
-                            (0, '-----',), (1, _('Agree')), (2, _('Not Agree')),))
-                else:
-                    self.fields["{}_boolean".format(key)] = forms.ChoiceField(choices=(
-                        (0, '-----',), (1, _('Agree')), (2, _('Not Agree'))))
-
-                #if value["isMandatory"] == True:
-                    #self.fields["{}_boolean".format(key)].label = "{} *".format(key)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 

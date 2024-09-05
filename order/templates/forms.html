@@ -29,15 +29,22 @@
 
                             {% csrf_token %}
 
-                            <table>
+                            <table class="col-12">
                                 {{ wizard.management_form }}
                                 {% if wizard.form.forms %}
                                 {{ wizard.form.management_form }}
                                 {% for form in wizard.form.forms %}
-                                {{ form|crispy }}
+                            {{ form|crispy }}
                                 {% endfor %}
                                 {% else %}
-                                {{ wizard.form|crispy }}
+                                {% for field in wizard.form.visible_fields  %}
+                     <tr><td>
+
+                                {{ field.label }}
+                                {{ field }}
+                         </td>
+                         </tr>
+                                {% endfor %}
                                 {% endif %}
                             </table>
 

@@ -1,5 +1,6 @@
 
 {% extends "order_home.html" %}
+{% load i18n %}
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -153,6 +154,13 @@ Geschätzter Verbrauch: {{context.expected_consumption}}
           </div>
         </div>
       </div>
+        <form action="" method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+<button class="btn btn-lg btn-warning" name="wizard_goto_step" type="submit" value="0">{% trans "first step" %}</button>
+<button class="btn  btn-lg btn-primary" name="wizard_goto_step" type="submit" value="{{ step }}">{% trans "prev step" %}</button>
+      </form>
+
+
     </div>
   </div>
 </section>

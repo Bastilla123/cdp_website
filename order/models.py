@@ -3,7 +3,8 @@ from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 from datetime import date
 from django.contrib.auth.models import User
-
+import uuid
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     title = models.CharField(max_length=255, blank=False, null=False, default="")
@@ -17,6 +18,16 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+class order(models.Model):
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
+    user_link = models.ForeignKey(
+        User, related_name="order_user_link", on_delete=models.CASCADE, blank = False, null = False, default = 0)
+    product_link = models.ForeignKey(
+        Product, on_delete=models.CASCADE, blank = False, null = False, default = 0)
+    expected_consumption = models.IntegerField(default=6)
 
 # class CustomerInfo(models.Model):
 #     firstname = models.CharField(max_length=255)

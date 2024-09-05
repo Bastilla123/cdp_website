@@ -6,21 +6,25 @@ import json
 
 
 
-def get_last_consent(request):
+def get_last_consent():
     consentlist = get_list_constenstatements()
+
     returnlist = []
     for key, value in consentlist["preferences"].items():
 
-        if 'de' in value["langs"]:
+        if value['isActive'] == True:
 
-            legal = get_legal_statment('de', key)
+            if 'de' in value["langs"]:
 
-            #if 'versions' in legal['legalStatements']:
-            lastversion = str(int(legal['legalStatements']['publishedDocVersion']))
+                legal = get_legal_statment('de', key)
 
-            if 'documentUrl' in legal['legalStatements']['versions'][lastversion]:
-               newlist = [key,lastversion,legal['legalStatements']['versions'][lastversion]['documentUrl']]
-               returnlist.append(newlist)
+
+                lastversion = str(int(legal['legalStatements']['publishedDocVersion']))
+                returndict = {'key':key,'lastversion':lastversion,'isMandatory':value['isMandatory']}
+                if 'documentUrl' in legal['legalStatements']['versions'][lastversion]:
+                    returndict['downloadurl'] = legal['legalStatements']['versions'][lastversion]['documentUrl']
+
+                returnlist.append(returndict)
 
 
 
@@ -28,18 +32,19 @@ def get_last_consent(request):
 
 
 def get_legal_statment(language,consentId):
-    print("Server "+str(settings.CDC_SERVER))
+
     url = "https://accounts.{}/accounts.getLegalStatements".format(settings.CDC_SERVER)
     data = {
 
         'lang': language,
         'consentId': consentId,
     }
+    response = execute_post_request(url, data, 200)
 
-    return execute_post_request(url, data, 200)
+    return response
 
 def get_list_constenstatements():
-    print("Server " + str(settings.CDC_SERVER))
+
     url = "https://accounts.{}/accounts.getConsentsStatements".format(settings.CDC_SERVER)
 
     return execute_post_request(url)
@@ -55,20 +60,12 @@ def get_list_constenstatements():
 
 
 
-def insert_FullAccount(UID,profile,preferences=None):
+def insert_FullAccount(payload):
 
     url = "https://accounts.eu1.gigya.com/accounts.importFullAccount"
 
-    payload = {
 
-        'UID': UID,
-        'profile': str(profile)
-
-    }
-    if preferences is not None:
-        payload["preferences"] = str(preferences)
-
-    print("Payload "+str(payload))
+    #print("Payload "+str(payload))
     return execute_post_request(url, payload)
 
 
